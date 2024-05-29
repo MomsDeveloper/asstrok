@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "asstrok"
+version = "0.1.0"
+description = "Yet Another Useless Machine Emulator"
+authors = ["Khabner Georgii"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ruff = "^0.4.5"
+mypy = "^1.10.0"
+pytest = "^8.2.1"
+coverage = "^7.5.2"
+
+[tool.poetry.group.dev.dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff.lint]
+preview = true
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # type annotations
+    "ANN",
+]
+
+[tool.mypy]
+exclude = ["brainfuck"]

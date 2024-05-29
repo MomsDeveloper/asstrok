@@ -1,0 +1,4 @@
+{
+    "mypy.dmypyExecutable": "/Users/georgijhabner/Desktop/ITMO/AK/lab3/.venv/bin/dmypy",
+    "ruff.path": ["/Users/georgijhabner/Desktop/ITMO/AK/lab3/.venv/bin/ruff"],
+}
