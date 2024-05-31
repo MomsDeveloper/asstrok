@@ -39,12 +39,14 @@ def extract_labels(lines: List[str]) -> Tuple[List[str], Dict[str, int], int]:
         # If the line store the label and the instruction
         if parts[0].endswith(":") and len(parts) > 1:
             label = parts[0][:-1]
+            assert label not in labels, f"Label {label} already defined"
             labels[label] = pc
             clean_lines.append(" ".join(parts[1:]))
             start = pc if parts[0] == "START:" else start
         # If the line store only the label
         elif parts[0].endswith(":"):
             label = parts[0][:-1]
+            assert label not in labels, f"Label {label} already defined"
             labels[label] = pc
             start = pc if parts[0] == "START:" else start
         else:
@@ -66,6 +68,8 @@ def replace_labels_with_addresses(
         parts = line.split()
         if parts[0] in {"JMP", "JE"} and parts[-1] in labels:
             parts[-1] = str(labels[parts[-1]])
+        elif parts[0] not in {"JMP", "JE"} and parts[-1] in labels:
+            raise ValueError(f"Label {parts[-1]} is not allowed with {parts[0]}")
         replaced_lines.append(" ".join(parts))
 
     return replaced_lines
