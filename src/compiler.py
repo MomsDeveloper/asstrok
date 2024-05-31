@@ -1,35 +1,131 @@
-from dataclasses import dataclass
 from pathlib import Path
-from struct import unpack
-from src.isa import Opcode, pack_program
-from src.isa import Program
-import sys
+from typing import Dict, List, Tuple
+
+from src.isa import (
+    ArithmeticInstructionImm,
+    ArithmeticInstructionReg,
+    CallInstruction,
+    Instruction,
+    IOMemoryInstruction,
+    IOOutInstruction,
+    JumpEqInstruction,
+    JumpInstruction,
+    ManagementInstruction,
+    Opcode,
+    Program,
+    Registers,
+    RetInstruction,
+    pack_program,
+)
 
 
 def get_meaningful_token(line: str) -> str:
     return line.split(";", 1)[0].strip()
 
-def compile(source_path: str) -> Program:
-    line = 0
-    pos = 0
-    return []
+
+def extract_labels(lines: List[str]) -> Tuple[List[str], Dict[str, int], int]:
+    labels: Dict[str, int] = {}
+    clean_lines: List[str] = []
+    # entry point of the program
+    start = 0
+
+    for line in lines:
+        line = get_meaningful_token(line)
+        if not line:
+            continue
+        
+        pc = len(clean_lines)
+        parts = line.split()
+        # If the line store the label and the instruction
+        if parts[0].endswith(":") and len(parts) > 1:
+            label = parts[0][:-1]
+            labels[label] = pc
+            clean_lines.append(" ".join(parts[1:]))
+            start = pc if parts[0] == "START:" else start
+        # If the line store only the label
+        elif parts[0].endswith(":"):
+            label = parts[0][:-1]
+            labels[label] = pc
+            start = pc if parts[0] == "START:" else start
+        else:
+            clean_lines.append(line)
+
+    return clean_lines, labels, start
+
+
+LabelsMap = Dict[str, int]
+
+
+def replace_labels_with_addresses(
+    lines: List[str], 
+    labels: LabelsMap, 
+) -> List[str]:
+    replaced_lines = []
+
+    for line in lines:
+        parts = line.split()
+        if parts[0] in {"JMP", "JE"} and parts[-1] in labels:
+            parts[-1] = str(labels[parts[-1]])
+        replaced_lines.append(" ".join(parts))
+
+    return replaced_lines
+
+
+def parse_instructions(lines: List[str], start: int) -> Program:
+    program: List[Instruction] = []
+    for line in lines:
+        parts = [
+            part.strip(",")
+            for part in line.strip().split()
+        ]
+        if not parts or parts[0].startswith(';'):
+            continue  # Skip empty lines and comments
+        
+        opcode = Opcode[parts[0]]
+        if opcode in {Opcode.ADD, Opcode.SUB, Opcode.MUL, Opcode.DIV}:
+            dest = Registers[parts[1]]
+            if parts[2] in {"R1", "R2"}:
+                src = Registers[parts[2]]
+                program.append(ArithmeticInstructionReg(opcode, dest, src))  # type: ignore
+            else:
+                program.append(ArithmeticInstructionImm(opcode, dest, int(parts[2])))  # type: ignore
+        elif opcode == Opcode.RET:
+            program.append(RetInstruction(opcode))
+        elif opcode == Opcode.CALL:
+            addr = int(parts[1])
+            program.append(CallInstruction(opcode, addr))
+        elif opcode == Opcode.JMP:
+            addr = int(parts[1])
+            program.append(JumpInstruction(opcode, addr))
+        elif opcode == Opcode.JE:
+            src = Registers[parts[1]]
+            addr = int(parts[2])
+            program.append(JumpEqInstruction(opcode, src, addr))
+        elif opcode in {Opcode.LD, Opcode.ST}:
+            src = Registers[parts[1]]
+            addr = int(parts[2])
+            program.append(IOMemoryInstruction(opcode, src, addr))  # type: ignore
+        elif opcode == Opcode.OUT:
+            src = Registers[parts[1]]
+            program.append(IOOutInstruction(opcode, src))
+        elif opcode == Opcode.HLT:
+            program.append(ManagementInstruction(opcode))
+        else:
+            raise ValueError(f"Unknown opcode: {parts[0]} at:\n{line}")
+
+    return Program(start, program)
+
+
+def compile(source: str) -> Program:
+    lines = source.splitlines()
+    clean_lines, labels, start = extract_labels(lines)
+    replaced_lines = replace_labels_with_addresses(clean_lines, labels)
+    return parse_instructions(replaced_lines, start)
 
 
 def main(source_path: Path, output_path: Path) -> None:
-    source = ""
-    with open(source_path, encoding="utf-8") as f:
+    with source_path.open() as f:
         source = f.read()
 
-    program: Program = compile(source) 
-
+    program = compile(source)
     output_path.write_bytes(pack_program(program))
-
-
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        raise AssertionError("Wrong arguments: compiler.py <input_file> <target_file>")
-    
-    source_path = Path(sys.argv[1])
-    output_path = Path(sys.argv[2])
-
-    main(source_path, output_path)

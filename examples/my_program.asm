@@ -1,8 +1,6 @@
-LD 10
-JMP 20
-INC
-INC
-
-
->> compiler my_portgram.asm -o code.bin 
->> machine code.bin
+LD R2, 10
+ADD R2, 4
+START:
+ADD R1, R2
+SUB R2, 1
+JMP START

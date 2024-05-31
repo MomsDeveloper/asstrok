@@ -6,13 +6,14 @@ from src.isa import (
     ArithmeticInstructionImm,
     ArithmeticInstructionReg,
     Instruction,
+    IOMemoryInstruction,
+    IOOutInstruction,
+    JumpEqInstruction,
     JumpInstruction,
-    JumpInstructionEq,
     ManagementInstruction,
-    MemoryInstructionImm,
-    MemoryInstructionOut,
     Opcode,
     Registers,
+    unpack,
 )
 
 test_instruction_packing_cases = [
@@ -45,11 +46,11 @@ test_instruction_packing_cases = [
         struct.pack(">H", 0b1000_0000_0000_0001),
     ),
     (
-        JumpInstructionEq(Opcode.JE, Registers.R1, 0x3FF),
+        JumpEqInstruction(Opcode.JE, Registers.R1, 0x3FF),
         struct.pack(">H", 0b1001_0011_1111_1111),
     ),
     (
-        JumpInstructionEq(Opcode.JE, Registers.R2, 0x11),
+        JumpEqInstruction(Opcode.JE, Registers.R2, 0x11),
         struct.pack(">H", 0b1001_1000_0001_0001),
     ),
     (
@@ -57,25 +58,25 @@ test_instruction_packing_cases = [
         struct.pack(">H", 0b0000_0000_0000_0000),
     ),
     (
-        MemoryInstructionImm(Opcode.LD, Registers.R1, 0x1),
+        IOMemoryInstruction(Opcode.LD, Registers.R1, 0x1),
         struct.pack(">H", 0b1100_0000_0000_0001),
     ),
     (
-        MemoryInstructionImm(Opcode.ST, Registers.R2, 0x3FF),
+        IOMemoryInstruction(Opcode.ST, Registers.R2, 0x3FF),
         struct.pack(">H", 0b1101_1011_1111_1111),
     ),
     (
-        MemoryInstructionOut(Opcode.OUT, Registers.R1),
+        IOOutInstruction(Opcode.OUT, Registers.R1),
         struct.pack(">H", 0b1110_0000_0000_0000),
     ),
 ]
 
 
-@ pytest.mark.parametrize(
+@pytest.mark.parametrize(
     argnames=("instr", "expected"),
     argvalues=test_instruction_packing_cases, 
     ids=[str(instr) for instr, _ in test_instruction_packing_cases]
 )
 def test_instruction_packing_successful(instr: Instruction, expected: bytes) -> None:
     assert instr.pack() == expected
-    assert instr == instr.unpack(expected)
+    assert instr == unpack(expected)
