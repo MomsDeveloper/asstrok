@@ -1,3 +1,5 @@
+SM:
+JMP SM
 LD R2, 10
 ADD R2, 4
 START:
