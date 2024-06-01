@@ -66,7 +66,7 @@ def replace_labels_with_addresses(
 
     for line in lines:
         parts = line.split()
-        if parts[0] in {"JMP", "JE"} and parts[-1] in labels:
+        if parts[0] in {"JMP", "JE", "CALL"} and parts[-1] in labels:
             parts[-1] = str(labels[parts[-1]])
         elif parts[0] not in {"JMP", "JE"} and parts[-1] in labels:
             raise ValueError(f"Label {parts[-1]} is not allowed with {parts[0]}")
@@ -123,6 +123,9 @@ def parse_instructions(lines: List[str], start: int) -> Program:
 def compile(source: str) -> Program:
     lines = source.splitlines()
     clean_lines, labels, start = extract_labels(lines)
+    clean_lines.insert(0, "CALL INT")
+    if "INT" and "START" not in labels:
+        raise ValueError("IN and START labels are required")
     replaced_lines = replace_labels_with_addresses(clean_lines, labels)
     return parse_instructions(replaced_lines, start)
 

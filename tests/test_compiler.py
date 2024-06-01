@@ -4,6 +4,7 @@ from src.compiler import compile
 from src.isa import (
     ArithmeticInstructionImm,
     ArithmeticInstructionReg,
+    CallInstruction,
     IOMemoryInstruction,
     IOOutInstruction,
     JumpEqInstruction,
@@ -15,12 +16,27 @@ from src.isa import (
 )
 
 test_compile_cases = [
+    # (
+    #     """ADD R1 R1""",
+    #     Program(
+    #         entry=0,
+    #         instructions=[
+    #             ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R1)
+    #         ]
+    #     )
+    # ),
     (
-        """ADD R1 R1""",
+        """
+        START:
+        ADD R1 R1
+        INT: ADD R1 R1   
+        """,
         Program(
             entry=0,
             instructions=[
-                ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R1)
+                CallInstruction(Opcode.CALL, 1),
+                ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R1),
+                ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R1),
             ]
         )
     ),
@@ -30,12 +46,13 @@ test_compile_cases = [
         ADD R2, 4
         START:
         ADD R1, R2
-        SUB R2, 1
+        INT: SUB R2, 1
         JMP START
         """,
         Program(
             entry=2,
             instructions=[
+                CallInstruction(Opcode.CALL, 3),
                 IOMemoryInstruction(Opcode.LD, Registers.R2, 10),
                 ArithmeticInstructionImm(Opcode.ADD, Registers.R2, 4),
                 ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R2),
@@ -46,6 +63,7 @@ test_compile_cases = [
     ),
     (
         """
+        INT:
         ; LD R1, 10
         ST: RET
         START:
@@ -60,6 +78,7 @@ test_compile_cases = [
         Program(
             entry=1,
             instructions=[
+                CallInstruction(Opcode.CALL, 0),
                 RetInstruction(Opcode.RET),
                 IOMemoryInstruction(Opcode.LD, Registers.R1, 10),
                 IOMemoryInstruction(Opcode.LD, Registers.R2, 20),
@@ -74,6 +93,7 @@ test_compile_cases = [
     ),
     (
         """
+        INT:
         ; LD R1, 10
         ST: 
         RET
@@ -90,6 +110,7 @@ test_compile_cases = [
         Program(
             entry=1,
             instructions=[
+                CallInstruction(Opcode.CALL, 0),
                 RetInstruction(Opcode.RET),
                 IOMemoryInstruction(Opcode.LD, Registers.R1, 10),
                 IOMemoryInstruction(Opcode.LD, Registers.R2, 20),
