@@ -4,14 +4,21 @@ from typing import Optional
 from src.compiler import main as write
 from src.datapath import DataPath
 from src.isa import (
+    ArgType,
+    ArithmeticInstructionImm,
+    ArithmeticInstructionReg,
     CallInstruction,
     Instruction,
+    IOMemoryInstruction,
+    IOOutInstruction,
     JumpEqInstruction,
     JumpInstruction,
     ManagementInstruction,
     Opcode,
     Program,
+    Registers,
     RetInstruction,
+    pack_program,
 )
 from src.machine_signals import Signals
 
@@ -65,29 +72,27 @@ class ControlUnit:
             self.tick()
             return True
         elif isinstance(instr, CallInstruction):
-            self.data_path.signal_read(Signals.SP_DEC)
             self.data_path.signal_latch_alu_l(Signals.DATA_R1)
             self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
             self.data_path.execute_alu(Opcode.ADD)
-            self.data_path.signal_write()
+            self.data_path.signal_write(Signals.SP_DEC)
             self.tick()
 
-            self.data_path.signal_read(Signals.SP_DEC)
             self.data_path.signal_latch_alu_l(Signals.DATA_R2)
             self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
             self.data_path.execute_alu(Opcode.ADD)
-            self.data_path.signal_write()
+            self.data_path.signal_write(Signals.SP_DEC)
             self.tick()
 
-            self.data_path.signal_read(Signals.SP_DEC)
             self.data_path.signal_latch_alu_l(Signals.LOAD_PC, self.program_counter)
             self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
             self.data_path.execute_alu(Opcode.ADD)
-            self.data_path.signal_write()
+            self.data_path.signal_write(Signals.SP_DEC)
             self.tick()
 
             self.signal_latch_program_counter(Signals.JMP_ARG, instr)
             self.tick()
+
             return True
         elif isinstance(instr, RetInstruction):
             self.data_path.signal_read(Signals.SP_INC)
@@ -99,13 +104,13 @@ class ControlUnit:
             self.tick()
 
             self.data_path.signal_read(Signals.SP_INC)
-            self.data_path.signal_latch_r1(Signals.MEM_DATA_OUT)
+            self.data_path.signal_latch_r2(Signals.MEM_DATA_OUT)
             self.tick()
 
             self.data_path.signal_read(Signals.SP_INC)
             self.data_path.signal_latch_r1(Signals.MEM_DATA_OUT)
             self.tick()
-
+            
             return True
         else:
             return False

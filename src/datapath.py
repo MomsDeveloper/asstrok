@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Literal
 
 from src.isa import Opcode, Registers
 from src.machine_signals import Signals
@@ -45,21 +45,15 @@ class DataPath:
         else:
             raise ValueError(f"Unknown signal {sel}")
 
-    def signal_read(self, sel: Signals, value: int = 0) -> None:
+    def signal_read(self, sel: Literal[Signals.SP_INC, Signals.INPUT_ADDR], 
+                    addr: int = 0) -> None:
         if sel == Signals.SP_INC:
-            if self.stack_pointer == 0:
-                raise ValueError("Stack overflow")
-            self.stack_pointer += 1
-            self.data_out = self.data_memory[self.stack_pointer]
-        elif sel == Signals.SP_DEC:
             if self.stack_pointer == self.data_memory_size:
                 raise ValueError("Stack underflow")
+            self.stack_pointer += 1
             self.data_out = self.data_memory[self.stack_pointer]
-            self.stack_pointer -= 1
         elif sel == Signals.INPUT_ADDR:
-            self.data_out = self.data_memory[value]
-        else:
-            raise ValueError(f"Unknown signal {sel}")
+            self.data_out = self.data_memory[addr]
     
     def signal_latch_alu_l(self, sel: Signals, value: int = 0) -> None:
         if sel == Signals.DATA_R1:
@@ -67,7 +61,7 @@ class DataPath:
         elif sel == Signals.DATA_R2:
             self.alu_l = self.r2
         elif sel == Signals.LOAD_PC:
-            self.alu_r = value
+            self.alu_l = value
         else:
             raise ValueError(f"Unknown signal {sel}")
     
@@ -93,9 +87,17 @@ class DataPath:
         else:
             raise ValueError(f"Unknown opcode {opcode}")
     
-    def signal_write(self) -> None:
-        # when we need to put smth on stack like in call instruction
-        self.data_memory[self.stack_pointer] = self.alu_out
+    def signal_write(self, sel: Literal[Signals.SP_DEC, Signals.INPUT_ADDR], 
+                     addr: int = 0) -> None:
+        if sel == Signals.SP_DEC:
+            if self.stack_pointer == 0:
+                raise ValueError("Stack overflow")
+            self.data_memory[self.stack_pointer] = self.alu_out
+            self.stack_pointer -= 1
+        elif sel == Signals.INPUT_ADDR:
+            self.data_memory[addr] = self.alu_out
+        else:
+            raise ValueError(f"Unknown signal {sel}")
 
     def zero_flag(self, reg: Registers) -> bool:
         if reg == Registers.R1:
