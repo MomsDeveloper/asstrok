@@ -223,8 +223,6 @@ def unpack(data: bytes) -> Instruction:
         raise ValueError(f"Unknown opcode: {opcode}")
 
 
-# Program = list[Instruction]
-
 @dataclass
 class Program: 
     entry: int  # start 16-bit address
@@ -232,7 +230,19 @@ class Program:
 
 
 def pack_program(program: Program) -> bytes:
+    # entry should be two bytes
     entry = struct.pack(">H", program.entry)
     instr = program.instructions
     # return b''.join(instr.pack() for instr in program)
     return entry + b''.join(instr.pack() for instr in instr)
+
+
+def unpack_program(data: bytes) -> Program:
+    entry = struct.unpack(">H", data[:2])[0]
+    instructions = []
+    i = 2
+    while i < len(data):
+        instr = unpack(data[i:i + 2])
+        instructions.append(instr)
+        i += 2
+    return Program(entry, instructions)
