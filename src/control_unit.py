@@ -3,9 +3,9 @@ from typing import Optional
 
 from src.compiler import main as write
 from src.datapath import DataPath
+from src.io_controller import IOController
 from src.isa import (
     ArgType,
-    ArithmeticInstructionImm,
     ArithmeticInstructionReg,
     CallInstruction,
     Instruction,
@@ -19,7 +19,6 @@ from src.isa import (
     Program,
     Registers,
     RetInstruction,
-    pack_program,
 )
 from src.machine_signals import Signals
 
@@ -50,17 +49,20 @@ from src.machine_signals import Signals
 
 
 class ControlUnit:
-    # program memory
-    program: Program
-    program_counter: int
-    data_path: DataPath
-    _tick: int
-    input_buffer: dict[int, int]
-    output_buffer: list[int]
 
-    def __init__(self, program: Program, data_path: DataPath) -> None:
+    program: Program
+    data_path: DataPath
+    controller: IOController
+
+    program_counter: int
+    _tick: int
+    
+    def __init__(
+        self, program: Program, data_path: DataPath, controller: IOController
+    ) -> None:
         self.program = program
         self.data_path = data_path
+        self.controller = controller
         self.program_counter = 0
         self._tick = 0
 
@@ -176,13 +178,49 @@ class ControlUnit:
             self.data_path.signal_read(Signals.SP_INC)
             self.data_path.signal_latch_r1(Signals.MEM_DATA_OUT)
             self.tick()
+        elif isinstance(instr, IOOutInstruction):
+            if instr.src == Registers.R1:
+                self.data_path.signal_latch_alu_l(Signals.DATA_R1)
+            else:
+                self.data_path.signal_latch_alu_l(Signals.DATA_R2)
+            self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
+            self.data_path.execute_alu(Opcode.ADD)
+            self.controller.output_buffer.append(self.data_path.alu_out)
+            self.tick()
         else:
             return False
 
         return True
 
     def check_int_request(self) -> None:
-        pass
+        if self.controller.interruption_flag:
+            self.controller.interruption_flag = False
+
+            self.data_path.signal_latch_alu_l(Signals.DATA_R1)
+            self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
+            self.data_path.execute_alu(Opcode.ADD)
+            self.data_path.signal_write(Signals.SP_DEC)
+            self.tick()
+
+            self.data_path.signal_latch_alu_l(Signals.DATA_R2)
+            self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
+            self.data_path.execute_alu(Opcode.ADD)
+            self.data_path.signal_write(Signals.SP_DEC)
+            self.tick()
+
+            self.data_path.signal_latch_alu_l(
+                Signals.LOAD_PC, self.program_counter
+            )
+            self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
+            self.data_path.execute_alu(Opcode.ADD)  
+            self.data_path.signal_write(Signals.SP_DEC)
+            self.tick()
+
+            self.program_counter = 0
+            self.data_path.signal_latch_r2(
+                Signals.INPUT, self.controller.input_buffer.pop(0)[1]
+            )
+            self.tick()
 
 
 def main(code_file: Path) -> None:

@@ -1,15 +1,11 @@
-from os import popen
-
 import pytest
 
 from src.control_unit import ControlUnit
 from src.datapath import DataPath
+from src.io_controller import IOController
 from src.isa import (
-    ArgType,
-    ArithmeticInstructionImm,
     ArithmeticInstructionReg,
     CallInstruction,
-    Instruction,
     IOMemoryInstruction,
     IOOutInstruction,
     IORstInstruction,
@@ -20,17 +16,16 @@ from src.isa import (
     Program,
     Registers,
     RetInstruction,
-    pack_program,
 )
 from src.machine_signals import Signals
-from tests.test_datapath import data_path
 
 
 @pytest.fixture
 def control_unit() -> ControlUnit:
     data_path = DataPath(256)
     program = Program(entry=0, instructions=[])
-    return ControlUnit(program, data_path)
+    controller = IOController()
+    return ControlUnit(program, data_path, controller)
 
 
 def test_control_unit_program_counter(control_unit: ControlUnit) -> None:
@@ -151,3 +146,23 @@ def test_control_unit_io_rst_instruction(control_unit: ControlUnit) -> None:
     assert control_unit.data_path.r2 == 20
     assert control_unit.program_counter == 50
 
+
+def test_control_unit_io_out_instruction(control_unit: ControlUnit) -> None:
+    input = "h"
+    control_unit.data_path.r1 = ord(input)
+    instr = IOOutInstruction(Opcode.OUT, Registers.R1)
+    control_unit.decode_and_execute_instruction(instr)
+    assert control_unit.controller.output_buffer[0] == ord(input)
+
+
+def test_check_int_request(control_unit: ControlUnit) -> None:
+    control_unit.controller.interruption_flag = True
+    control_unit.controller.input_buffer.append((5, ord("h")))
+
+    control_unit.data_path.r1 = 10
+    control_unit.data_path.r2 = 20
+    control_unit.program_counter = 50
+    control_unit.check_int_request()
+
+    assert control_unit.data_path.r2 == ord("h")
+    assert control_unit.program_counter == 0
