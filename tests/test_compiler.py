@@ -16,15 +16,6 @@ from src.isa import (
 )
 
 test_compile_cases = [
-    # (
-    #     """ADD R1 R1""",
-    #     Program(
-    #         entry=0,
-    #         instructions=[
-    #             ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R1)
-    #         ]
-    #     )
-    # ),
     (
         """
         START:
@@ -32,9 +23,9 @@ test_compile_cases = [
         INT: ADD R1 R1   
         """,
         Program(
-            entry=0,
+            entry=1,
             instructions=[
-                CallInstruction(Opcode.CALL, 1),
+                CallInstruction(Opcode.CALL, 2),
                 ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R1),
                 ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R1),
             ]
@@ -50,14 +41,14 @@ test_compile_cases = [
         JMP START
         """,
         Program(
-            entry=2,
+            entry=3,
             instructions=[
-                CallInstruction(Opcode.CALL, 3),
+                CallInstruction(Opcode.CALL, 4),
                 IOMemoryInstruction(Opcode.LD, Registers.R2, 10),
                 ArithmeticInstructionImm(Opcode.ADD, Registers.R2, 4),
                 ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R2),
                 ArithmeticInstructionImm(Opcode.SUB, Registers.R2, 1),
-                JumpInstruction(Opcode.JMP, 2),
+                JumpInstruction(Opcode.JMP, 3),
             ]
         )
     ),
@@ -76,9 +67,9 @@ test_compile_cases = [
             JE R1, ST
         """,
         Program(
-            entry=1,
+            entry=2,
             instructions=[
-                CallInstruction(Opcode.CALL, 0),
+                CallInstruction(Opcode.CALL, 1),
                 RetInstruction(Opcode.RET),
                 IOMemoryInstruction(Opcode.LD, Registers.R1, 10),
                 IOMemoryInstruction(Opcode.LD, Registers.R2, 20),
@@ -86,7 +77,7 @@ test_compile_cases = [
                 IOMemoryInstruction(Opcode.ST, Registers.R1, 30),
                 IOOutInstruction(Opcode.OUT, Registers.R1),
                 IOOutInstruction(Opcode.OUT, Registers.R2),
-                JumpEqInstruction(Opcode.JE, Registers.R1, 0),
+                JumpEqInstruction(Opcode.JE, Registers.R1, 1),
             ]
         )
 
@@ -108,9 +99,9 @@ test_compile_cases = [
             JE R1, START
         """,
         Program(
-            entry=1,
+            entry=2,
             instructions=[
-                CallInstruction(Opcode.CALL, 0),
+                CallInstruction(Opcode.CALL, 1),
                 RetInstruction(Opcode.RET),
                 IOMemoryInstruction(Opcode.LD, Registers.R1, 10),
                 IOMemoryInstruction(Opcode.LD, Registers.R2, 20),
@@ -118,7 +109,7 @@ test_compile_cases = [
                 IOMemoryInstruction(Opcode.ST, Registers.R1, 30),
                 IOOutInstruction(Opcode.OUT, Registers.R1),
                 IOOutInstruction(Opcode.OUT, Registers.R2),
-                JumpEqInstruction(Opcode.JE, Registers.R1, 1),
+                JumpEqInstruction(Opcode.JE, Registers.R1, 2),
             ]
         )
     ),

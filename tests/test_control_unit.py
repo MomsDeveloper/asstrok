@@ -52,20 +52,20 @@ def test_control_unit_jump_instruction(control_unit: ControlUnit) -> None:
 def test_control_unit_jump_eq_instruction(control_unit: ControlUnit) -> None:
     instr = JumpEqInstruction(Opcode.JE, Registers.R1, 5)
     control_unit.data_path.zero_flag(Registers.R1)
-    control_unit.decode_and_execute_control_flow_instruction(instr)
+    control_unit.decode_and_execute_instruction(instr)
     assert control_unit.program_counter == 5
 
 
 def test_control_unit_management_instruction(control_unit: ControlUnit) -> None:
     instr = ManagementInstruction(Opcode.HLT)
     with pytest.raises(StopIteration):
-        control_unit.decode_and_execute_control_flow_instruction(instr)
+        control_unit.decode_and_execute_instruction(instr)
 
 
 def test_control_unit_call_instruction(control_unit: ControlUnit) -> None:
     control_unit.program_counter = 10
     instr = CallInstruction(Opcode.CALL, 5)
-    control_unit.decode_and_execute_control_flow_instruction(instr)
+    control_unit.decode_and_execute_instruction(instr)
     assert control_unit.program_counter == 5
     assert control_unit.data_path.data_memory[255] == 10
 
@@ -73,11 +73,11 @@ def test_control_unit_call_instruction(control_unit: ControlUnit) -> None:
 def test_control_unit_ret_instruction(control_unit: ControlUnit) -> None:
     control_unit.program_counter = 10
     instr_1 = CallInstruction(Opcode.CALL, 5)
-    control_unit.decode_and_execute_control_flow_instruction(instr_1)
+    control_unit.decode_and_execute_instruction(instr_1)
     assert control_unit.program_counter == 5
 
     instr_2 = RetInstruction(Opcode.RET)
-    control_unit.decode_and_execute_control_flow_instruction(instr_2)
+    control_unit.decode_and_execute_instruction(instr_2)
     assert control_unit.program_counter == 10
 
 
@@ -137,7 +137,7 @@ def test_control_unit_io_rst_instruction(control_unit: ControlUnit) -> None:
     control_unit.data_path.r2 = 2
 
     instr_call = CallInstruction(Opcode.CALL, 5)
-    control_unit.decode_and_execute_control_flow_instruction(instr_call)
+    control_unit.decode_and_execute_instruction(instr_call)
     
     instr_rst = IORstInstruction(Opcode.RST)
     control_unit.decode_and_execute_instruction(instr_rst)

@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -8,6 +9,7 @@ from src.isa import (
     Instruction,
     IOMemoryInstruction,
     IOOutInstruction,
+    IORstInstruction,
     JumpEqInstruction,
     JumpInstruction,
     ManagementInstruction,
@@ -33,7 +35,7 @@ def extract_labels(lines: List[str]) -> Tuple[List[str], Dict[str, int], int]:
         line = get_meaningful_token(line)
         if not line:
             continue
-        
+
         pc = len(clean_lines)
         parts = line.split()
         # If the line store the label and the instruction
@@ -59,8 +61,8 @@ LabelsMap = Dict[str, int]
 
 
 def replace_labels_with_addresses(
-    lines: List[str], 
-    labels: LabelsMap, 
+    lines: List[str],
+    labels: LabelsMap,
 ) -> List[str]:
     replaced_lines = []
 
@@ -69,7 +71,8 @@ def replace_labels_with_addresses(
         if parts[0] in {"JMP", "JE", "CALL"} and parts[-1] in labels:
             parts[-1] = str(labels[parts[-1]])
         elif parts[0] not in {"JMP", "JE"} and parts[-1] in labels:
-            raise ValueError(f"Label {parts[-1]} is not allowed with {parts[0]}")
+            raise ValueError(
+                f"Label {parts[-1]} is not allowed with {parts[0]}")
         replaced_lines.append(" ".join(parts))
 
     return replaced_lines
@@ -84,15 +87,17 @@ def parse_instructions(lines: List[str], start: int) -> Program:
         ]
         if not parts or parts[0].startswith(';'):
             continue  # Skip empty lines and comments
-        
+
         opcode = Opcode[parts[0]]
         if opcode in {Opcode.ADD, Opcode.SUB, Opcode.MUL, Opcode.DIV}:
             dest = Registers[parts[1]]
             if parts[2] in {"R1", "R2"}:
                 src = Registers[parts[2]]
-                program.append(ArithmeticInstructionReg(opcode, dest, src))  # type: ignore
+                program.append(ArithmeticInstructionReg(
+                    opcode, dest, src))  # type: ignore
             else:
-                program.append(ArithmeticInstructionImm(opcode, dest, int(parts[2])))  # type: ignore
+                program.append(ArithmeticInstructionImm(
+                    opcode, dest, int(parts[2])))  # type: ignore
         elif opcode == Opcode.RET:
             program.append(RetInstruction(opcode))
         elif opcode == Opcode.CALL:
@@ -108,12 +113,15 @@ def parse_instructions(lines: List[str], start: int) -> Program:
         elif opcode in {Opcode.LD, Opcode.ST}:
             src = Registers[parts[1]]
             addr = int(parts[2])
-            program.append(IOMemoryInstruction(opcode, src, addr))  # type: ignore
+            program.append(IOMemoryInstruction(
+                opcode, src, addr))  # type: ignore
         elif opcode == Opcode.OUT:
             src = Registers[parts[1]]
             program.append(IOOutInstruction(opcode, src))
         elif opcode == Opcode.HLT:
             program.append(ManagementInstruction(opcode))
+        elif opcode == Opcode.RST:
+            program.append(IORstInstruction(opcode))
         else:
             raise ValueError(f"Unknown opcode: {parts[0]} at:\n{line}")
 
@@ -122,10 +130,11 @@ def parse_instructions(lines: List[str], start: int) -> Program:
 
 def compile(source: str) -> Program:
     lines = source.splitlines()
+    lines.insert(0, "CALL INT")
     clean_lines, labels, start = extract_labels(lines)
-    clean_lines.insert(0, "CALL INT")
     if "INT" and "START" not in labels:
         raise ValueError("IN and START labels are required")
+
     replaced_lines = replace_labels_with_addresses(clean_lines, labels)
     return parse_instructions(replaced_lines, start)
 
@@ -136,3 +145,10 @@ def main(source_path: Path, output_path: Path) -> None:
 
     program = compile(source)
     output_path.write_bytes(pack_program(program))
+
+
+if __name__ == "__main__":
+    assert len(sys.argv) == 2, "Usage: python compiler.py <source.asm>"
+    path = Path(sys.argv[1])
+    output = path.with_suffix(".bin")
+    main(path, output)
