@@ -23,6 +23,7 @@ class Opcode(Enum):
     LD = 0b1100
     ST = 0b1101
     OUT = 0b1110
+    RST = 0b1111
 
     # Management
     HLT = 0b0000
@@ -146,7 +147,7 @@ class JumpInstruction(ControlInstruction):
 
 @dataclass
 class IOInstruction(Instruction):
-    opcode: Literal[Opcode.LD, Opcode.ST, Opcode.OUT]
+    opcode: Literal[Opcode.LD, Opcode.ST, Opcode.OUT, Opcode.RST]
 
 
 @dataclass
@@ -173,6 +174,16 @@ class IOOutInstruction(IOInstruction):
         packed_data |= self.opcode.value << 12
         packed_data |= self.src.value << 11
         packed_data |= 0x0
+        return struct.pack(">H", packed_data)
+
+
+@dataclass
+class IORstInstruction(IOInstruction):
+    opcode: Literal[Opcode.RST]
+
+    def pack(self) -> bytes:
+        packed_data = 0
+        packed_data |= self.opcode.value << 12
         return struct.pack(">H", packed_data)
 
 
@@ -217,6 +228,8 @@ def unpack(data: bytes) -> Instruction:
     elif opcode == Opcode.OUT:
         src = Registers((unpacked_data >> 11) & 0x0001)
         return IOOutInstruction(opcode, src)
+    elif opcode == Opcode.RST:
+        return IORstInstruction(opcode)
     elif opcode == Opcode.HLT:
         return ManagementInstruction(opcode)
     else:
@@ -224,7 +237,7 @@ def unpack(data: bytes) -> Instruction:
 
 
 @dataclass
-class Program: 
+class Program:
     entry: int  # start 16-bit address
     instructions: list[Instruction]
 

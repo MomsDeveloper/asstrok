@@ -7,3 +7,10 @@ lint-fix:
 
 typecheck:
 	mypy src tests
+
+test:
+	pytest -svv
+
+test-cov:
+	coverage run -m pytest
+	coverage report -m

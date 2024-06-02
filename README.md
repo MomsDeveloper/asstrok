@@ -192,6 +192,7 @@ comment ::= ";" <any symbols except "\n">
 | `LD`         | `1100 R ADDR`        |
 | `ST`         | `1101 R ADDR`        |
 | `OUT`        | `1110 R ---`         |
+| `RST`        | `1111 ---`           |
 
 | `HLT`        | `0000 ---`           |
 
