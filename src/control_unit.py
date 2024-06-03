@@ -3,13 +3,12 @@ from typing import Optional
 from src.datapath import DataPath
 from src.io_controller import IOController
 from src.isa import (
-    ArgType,
     ArithmeticInstructionImm,
     ArithmeticInstructionReg,
     CallInstruction,
-    IOMemoryInstructionImm,
     Instruction,
     IOMemoryInstruction,
+    IOMemoryInstructionImm,
     IOOutInstruction,
     IORstInstruction,
     JumpEqInstruction,
