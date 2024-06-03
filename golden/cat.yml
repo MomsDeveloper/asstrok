@@ -15,7 +15,8 @@ in_stdin: |-
   [(0, 'c'), (10, 'a'), (20, 't'), (30, '\0')]
 out_log: |
   INFO     root:machine.py:38 Starting simulation
-  INFO     root:machine.py:39 Current State:TICK: 0	PC: 4
+  INFO     root:machine.py:39 Current State:
+  TICK: 0	PC: 4
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -23,15 +24,10 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:40 
-  INFO     root:machine.py:54 Current State:Interrupted with input: c
-  TICK: 1	PC: 5
-  ALU_L: 0	ALU_R: 0	ALU_OUT: 0
-  R1: 0	R2: 0	SP: 255
-  STACK: []
-  MEMORY: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
+  INFO     root:machine.py:54 Current State: Interrupted with input: c
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 7	PC: 1
+  INFO     root:machine.py:54 Current State:
+  TICK: 7	PC: 1
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 99	SP: 251
   STACK: [0, 5, 0, 0]
@@ -39,7 +35,8 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 8	PC: 2
+  INFO     root:machine.py:54 Current State:
+  TICK: 8	PC: 2
   ALU_L: 99	ALU_R: 0	ALU_OUT: 99
   R1: 0	R2: 99	SP: 251
   STACK: [0, 5, 0, 0]
@@ -47,7 +44,8 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 9	PC: 3
+  INFO     root:machine.py:54 Current State:
+  TICK: 9	PC: 3
   ALU_L: 99	ALU_R: 0	ALU_OUT: 99
   R1: 0	R2: 99	SP: 251
   STACK: [0, 5, 0, 0]
@@ -55,7 +53,8 @@ out_log: |
   Instruction to execute:
   IORstInstruction(opcode=<Opcode.RST: 15>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 12	PC: 5
+  INFO     root:machine.py:54 Current State:
+  TICK: 12	PC: 5
   ALU_L: 5	ALU_R: 0	ALU_OUT: 5
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -63,15 +62,10 @@ out_log: |
   Instruction to execute:
   JumpEqInstruction(opcode=<Opcode.JE: 9>, src=<Registers.R1: 0>, addr=7)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:Interrupted with input: a
-  TICK: 13	PC: 7
-  ALU_L: 5	ALU_R: 0	ALU_OUT: 5
-  R1: 0	R2: 0	SP: 255
-  STACK: []
-  MEMORY: [99, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
+  INFO     root:machine.py:54 Current State: Interrupted with input: a
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 19	PC: 1
+  INFO     root:machine.py:54 Current State:
+  TICK: 19	PC: 1
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 97	SP: 251
   STACK: [0, 7, 0, 0]
@@ -79,7 +73,8 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 20	PC: 2
+  INFO     root:machine.py:54 Current State:
+  TICK: 20	PC: 2
   ALU_L: 97	ALU_R: 0	ALU_OUT: 97
   R1: 0	R2: 97	SP: 251
   STACK: [0, 7, 0, 0]
@@ -87,15 +82,10 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:Interrupted with input: t
-  TICK: 21	PC: 3
-  ALU_L: 97	ALU_R: 0	ALU_OUT: 97
-  R1: 0	R2: 97	SP: 251
-  STACK: [0, 7, 0, 0]
-  MEMORY: [97, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
+  INFO     root:machine.py:54 Current State: Interrupted with input: t
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 27	PC: 1
+  INFO     root:machine.py:54 Current State:
+  TICK: 27	PC: 1
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 116	SP: 247
   STACK: [0, 3, 97, 0, 0, 7, 0, 0]
@@ -103,7 +93,8 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 28	PC: 2
+  INFO     root:machine.py:54 Current State:
+  TICK: 28	PC: 2
   ALU_L: 116	ALU_R: 0	ALU_OUT: 116
   R1: 0	R2: 116	SP: 247
   STACK: [0, 3, 97, 0, 0, 7, 0, 0]
@@ -111,7 +102,8 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 29	PC: 3
+  INFO     root:machine.py:54 Current State:
+  TICK: 29	PC: 3
   ALU_L: 116	ALU_R: 0	ALU_OUT: 116
   R1: 0	R2: 116	SP: 247
   STACK: [0, 3, 97, 0, 0, 7, 0, 0]
@@ -119,7 +111,8 @@ out_log: |
   Instruction to execute:
   IORstInstruction(opcode=<Opcode.RST: 15>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 32	PC: 3
+  INFO     root:machine.py:54 Current State:
+  TICK: 32	PC: 3
   ALU_L: 3	ALU_R: 0	ALU_OUT: 3
   R1: 0	R2: 97	SP: 251
   STACK: [0, 7, 0, 0]
@@ -127,7 +120,7 @@ out_log: |
   Instruction to execute:
   IORstInstruction(opcode=<Opcode.RST: 15>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:Interrupted 
+  INFO     root:machine.py:54 
   TICK: 35	PC: 7
   ALU_L: 7	ALU_R: 0	ALU_OUT: 7
   R1: 0	R2: 0	SP: 255
@@ -135,7 +128,8 @@ out_log: |
   MEMORY: [116, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 41	PC: 1
+  INFO     root:machine.py:54 Current State:
+  TICK: 41	PC: 1
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 251
   STACK: [0, 7, 0, 0]
@@ -143,7 +137,8 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 42	PC: 2
+  INFO     root:machine.py:54 Current State:
+  TICK: 42	PC: 2
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 251
   STACK: [0, 7, 0, 0]
@@ -151,7 +146,8 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 43	PC: 3
+  INFO     root:machine.py:54 Current State:
+  TICK: 43	PC: 3
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 251
   STACK: [0, 7, 0, 0]
@@ -159,7 +155,8 @@ out_log: |
   Instruction to execute:
   IORstInstruction(opcode=<Opcode.RST: 15>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State:TICK: 46	PC: 7
+  INFO     root:machine.py:54 Current State:
+  TICK: 46	PC: 7
   ALU_L: 7	ALU_R: 0	ALU_OUT: 7
   R1: 0	R2: 0	SP: 255
   STACK: []
