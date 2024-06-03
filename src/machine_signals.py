@@ -2,8 +2,6 @@ from enum import Enum, auto
 
 
 class Signals(Enum):
-    # program counter
-    PUT_DATA = auto()
     JMP_ARG = auto()
     NEXT_IP = auto()
 

@@ -171,5 +171,25 @@ out_log: |
   INFO     root:machine.py:79 Output buffer:
 out_stdout: |
   ============================================================
+  COOOOOOOUNT: 1
+  COOOOOOOUNT: 2
+  COOOOOOOUNT: 3
+  COOOOOOOUNT: 4
+  COOOOOOOUNT: 5
+  COOOOOOOUNT: 6
+  COOOOOOOUNT: 7
+  COOOOOOOUNT: 8
+  COOOOOOOUNT: 9
+  COOOOOOOUNT: 10
+  COOOOOOOUNT: 11
+  COOOOOOOUNT: 12
+  COOOOOOOUNT: 13
+  COOOOOOOUNT: 14
+  COOOOOOOUNT: 15
+  COOOOOOOUNT: 16
+  COOOOOOOUNT: 17
+  COOOOOOOUNT: 18
+  COOOOOOOUNT: 19
+  ['c', 'a', 't', '\x00']
 out_code: !!binary |
   AASgAegA3ADwAMgAkAeABAAA

@@ -34,15 +34,6 @@ def test_control_unit_program_counter(control_unit: ControlUnit) -> None:
     assert control_unit.program_counter == 1
 
 
-def test_control_unit_signal_latch_program_counter_put_data(
-    control_unit: ControlUnit
-) -> None:
-    control_unit.data_path.alu_out = 10
-
-    control_unit.signal_latch_program_counter(Signals.PUT_DATA)
-    assert control_unit.program_counter == 10
-
-
 def test_control_unit_jump_instruction(control_unit: ControlUnit) -> None:
     instr = JumpInstruction(Opcode.JMP, 5)
     control_unit.signal_latch_program_counter(Signals.JMP_ARG, instr)

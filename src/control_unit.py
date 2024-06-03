@@ -49,9 +49,6 @@ class ControlUnit:
         instr: Optional[Instruction] = None
     ) -> None:
         match sel:
-            case Signals.PUT_DATA:
-                self.program_counter = self.data_path.alu_out
-                pass
             case Signals.JMP_ARG:
                 assert isinstance(instr, (JumpInstruction, JumpEqInstruction,
                                           CallInstruction))

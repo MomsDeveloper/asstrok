@@ -54,7 +54,6 @@ PRINT_NAME:
 END:
     HLT
 
-
 START:
     ; W
     SUB R1, R1

@@ -77,15 +77,15 @@ def main(code_file: Path, input_file: Path) -> None:
     except StopIteration:
         logging.info("Simulation finished")
         logging.info("Output buffer:")
-        # logging.info([
-        #     chr(c)
-        #     for c in machine.io_controller.output_buffer
-        # ])
+        print([
+            chr(c)
+            for c in machine.io_controller.output_buffer
+        ])
         # logging.info([
         #     c
         #     for c in machine.io_controller.output_buffer
         # ])
-
+        
 
 if __name__ == "__main__":
     assert len(sys.argv) == 3, "Usage: python machine.py <compiled.bin> <input.txt>"
