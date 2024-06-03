@@ -94,7 +94,7 @@ class ControlUnit:
                 elif instr.src == Registers.R1:
                     self.data_path.signal_read(Signals.ADDR_R1)
                 else:
-                    self.data_path.signal_read(Signals.ADDR_R2) 
+                    self.data_path.signal_read(Signals.ADDR_R2)
 
                 if instr.dest == Registers.R1:
                     self.data_path.signal_latch_r1(Signals.MEM_DATA_OUT)
@@ -107,10 +107,10 @@ class ControlUnit:
                     self.data_path.signal_latch_alu_l(Signals.DATA_R1)
                 else:
                     self.data_path.signal_latch_alu_l(Signals.DATA_R2)
-                
+
                 self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
                 self.data_path.execute_alu(Opcode.ADD)
-                
+
                 if isinstance(instr, IOMemoryInstructionImm):
                     self.data_path.signal_write(Signals.ADDR_IMM, instr.src)
                 elif instr.src == Registers.R1:
@@ -211,7 +211,7 @@ class ControlUnit:
                 Signals.INPUT, self.controller.input_buffer.pop(0)[1]
             )
             self.tick()
-        
+
     def __repr__(self) -> str:
         datapath_repr = f"R1: {self.data_path.r1}\tR2: {self.data_path.r2}\tSP: {self.data_path.stack_pointer}"  # noqa: E501
         cu_repr = f"TICK: {self._tick}\tPC: {self.program_counter}"
@@ -230,7 +230,7 @@ class ControlUnit:
                 f"{stack_repr}\n"
                 f"{mem_repr}\n"
             )
-        else: 
+        else:
             return (
                 f"Current State:"
                 f"{cu_repr}\n"
@@ -238,5 +238,4 @@ class ControlUnit:
                 f"{datapath_repr}\n"
                 f"{stack_repr}\n"
                 f"{mem_repr}\n"
-                f"{'Instruction to execute:\n' + str(instr_repr)}"  # noqa: E501
-            )
+                f"{'Instruction to execute:\n' + str(instr_repr)}")
