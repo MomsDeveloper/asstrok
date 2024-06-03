@@ -26,9 +26,9 @@ class Machine:
         self.cu.program = program
 
     def simulate(self, 
-    input_buffer: list[tuple[int, int]], 
-    program: Program, data_memory_size: int = 100, 
-    limit: int = 100
+        input_buffer: list[tuple[int, int]], 
+        program: Program, data_memory_size: int = 100, 
+        limit: int = 100000
     ) -> None:
         self.load_program(program)
         self.io_controller.input_buffer = input_buffer
@@ -72,7 +72,19 @@ def main(code_file: Path, input_file: Path) -> None:
     converted_data = [(int(x[0]), ord(x[1])) for x in data]
     
     machine = Machine()
-    machine.simulate(converted_data, program)
+    try:
+        machine.simulate(converted_data, program)
+    except StopIteration:
+        logging.info("Simulation finished")
+        logging.info("Output buffer:")
+        # logging.info([
+        #     chr(c)
+        #     for c in machine.io_controller.output_buffer
+        # ])
+        # logging.info([
+        #     c
+        #     for c in machine.io_controller.output_buffer
+        # ])
 
 
 if __name__ == "__main__":

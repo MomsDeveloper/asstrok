@@ -153,14 +153,38 @@ class IOInstruction(Instruction):
 @dataclass
 class IOMemoryInstruction(IOInstruction):
     opcode: Literal[Opcode.LD, Opcode.ST]
+    dest: Registers
+    src: Registers | int
+    arg_type: ArgType
+
+
+@dataclass
+class IOMemoryInstructionReg(IOMemoryInstruction):
+    opcode: Literal[Opcode.LD, Opcode.ST]
     src: Registers
-    addr: int
+    arg_type: Literal[ArgType.REG] = ArgType.REG
 
     def pack(self) -> bytes:
         packed_data = 0
         packed_data |= self.opcode.value << 12
-        packed_data |= self.src.value << 11
-        packed_data |= self.addr & 0x3FF
+        packed_data |= self.arg_type.value << 11
+        packed_data |= self.dest.value << 10
+        packed_data |= self.src.value << 9
+        return struct.pack(">H", packed_data)
+
+
+@dataclass
+class IOMemoryInstructionImm(IOMemoryInstruction):
+    opcode: Literal[Opcode.LD, Opcode.ST]
+    src: int
+    arg_type: Literal[ArgType.IMM] = ArgType.IMM
+
+    def pack(self) -> bytes:
+        packed_data = 0
+        packed_data |= self.opcode.value << 12
+        packed_data |= self.arg_type.value << 11
+        packed_data |= self.dest.value << 10
+        packed_data |= self.src & 0x3FF
         return struct.pack(">H", packed_data)
 
 
@@ -222,9 +246,14 @@ def unpack(data: bytes) -> Instruction:
         addr = unpacked_data & 0x03FF
         return JumpEqInstruction(opcode, src, addr)
     elif opcode in {Opcode.LD, Opcode.ST}: 
-        src = Registers((unpacked_data >> 11) & 0x0001)
-        addr = unpacked_data & 0x03FF
-        return IOMemoryInstruction(opcode, src, addr)  # type: ignore
+        arg_type = ArgType((unpacked_data >> 11) & 0x0001)
+        dest = Registers((unpacked_data >> 10) & 0x0001)
+        if arg_type == ArgType.REG:
+            src_reg = Registers((unpacked_data >> 9) & 0x0001)
+            return IOMemoryInstructionReg(opcode, dest, src_reg)  # type: ignore
+        else:
+            src_imm = unpacked_data & 0x03FF
+            return IOMemoryInstructionImm(opcode, dest, src_imm)  # type: ignore
     elif opcode == Opcode.OUT:
         src = Registers((unpacked_data >> 11) & 0x0001)
         return IOOutInstruction(opcode, src)

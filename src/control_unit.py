@@ -3,9 +3,11 @@ from typing import Optional
 from src.datapath import DataPath
 from src.io_controller import IOController
 from src.isa import (
+    ArgType,
     ArithmeticInstructionImm,
     ArithmeticInstructionReg,
     CallInstruction,
+    IOMemoryInstructionImm,
     Instruction,
     IOMemoryInstruction,
     IOOutInstruction,
@@ -61,7 +63,11 @@ class ControlUnit:
     def decode_and_execute_instruction(self, instr: Instruction) -> None:
         if isinstance(instr, ArithmeticInstructionReg):
             self.data_path.signal_latch_alu_l(Signals.DATA_R1)
-            self.data_path.signal_latch_alu_r(Signals.DATA_R2)
+            if instr.src == Registers.R1:
+                self.data_path.signal_latch_alu_r(Signals.DATA_R1)
+            else:
+                self.data_path.signal_latch_alu_r(Signals.DATA_R2)
+
             self.data_path.execute_alu(instr.opcode)
             if instr.dest == Registers.R1:
                 self.data_path.signal_latch_r1(Signals.ALU_OUT)
@@ -84,20 +90,35 @@ class ControlUnit:
             self.signal_latch_program_counter(Signals.NEXT_IP)
         elif isinstance(instr, IOMemoryInstruction):
             if instr.opcode == Opcode.LD:
-                self.data_path.signal_read(Signals.INPUT_ADDR, instr.addr)
-                if instr.src == Registers.R1:
+                if isinstance(instr, IOMemoryInstructionImm):
+                    self.data_path.signal_read(Signals.ADDR_IMM, instr.src)
+                elif instr.src == Registers.R1:
+                    self.data_path.signal_read(Signals.ADDR_R1)
+                else:
+                    self.data_path.signal_read(Signals.ADDR_R2) 
+
+                if instr.dest == Registers.R1:
                     self.data_path.signal_latch_r1(Signals.MEM_DATA_OUT)
                 else:
                     self.data_path.signal_latch_r2(Signals.MEM_DATA_OUT)
+
                 self.tick()
             elif instr.opcode == Opcode.ST:
-                if instr.src == Registers.R1:
+                if instr.dest == Registers.R1:
                     self.data_path.signal_latch_alu_l(Signals.DATA_R1)
                 else:
                     self.data_path.signal_latch_alu_l(Signals.DATA_R2)
+                
                 self.data_path.signal_latch_alu_r(Signals.LOAD_ARG, 0)
                 self.data_path.execute_alu(Opcode.ADD)
-                self.data_path.signal_write(Signals.INPUT_ADDR, instr.addr)
+                
+                if isinstance(instr, IOMemoryInstructionImm):
+                    self.data_path.signal_write(Signals.ADDR_IMM, instr.src)
+                elif instr.src == Registers.R1:
+                    self.data_path.signal_write(Signals.ADDR_R1)
+                else:
+                    self.data_path.signal_write(Signals.ADDR_R2)
+
                 self.tick()
             self.signal_latch_program_counter(Signals.NEXT_IP)
         elif isinstance(instr, IOOutInstruction):
@@ -196,6 +217,7 @@ class ControlUnit:
         datapath_repr = f"R1: {self.data_path.r1}\tR2: {self.data_path.r2}\tSP: {self.data_path.stack_pointer}"  # noqa: E501
         cu_repr = f"TICK: {self._tick}\tPC: {self.program_counter}"
         instr_repr = self.program.instructions[self.program_counter]
+        mem_repr = f"MEMORY: {self.data_path.data_memory[:10]}"
         stack_repr = f"STACK: {
             self.data_path.data_memory[self.data_path.stack_pointer + 1:]}"
         alu_repr = f"ALU_L: {self.data_path.alu_l}\tALU_R: {
@@ -204,11 +226,12 @@ class ControlUnit:
             f"Current State:"
             f"{'\nInterrupted' if self.controller.interruption_flag else ''}"
             f" {'with input: ' +
-                chr(self.controller.input_buffer[0][1]) if self.controller.interruption_flag else ''}\n"  # noqa: E501
+                chr(self.controller.input_buffer[0][1]) if self.controller.interruption_flag and len(self.controller.input_buffer) > 1 else ''}\n"  # noqa: E501
             f"{cu_repr}\n"
             f"{alu_repr}\n"
             f"{datapath_repr}\n"
             f"{stack_repr}\n"
+            f"{mem_repr}\n"
             f"{'Instruction to execute:\n' +
                 str(instr_repr) if not self.controller.interruption_flag else ''}"
         )

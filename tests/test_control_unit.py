@@ -6,7 +6,7 @@ from src.io_controller import IOController
 from src.isa import (
     ArithmeticInstructionReg,
     CallInstruction,
-    IOMemoryInstruction,
+    IOMemoryInstructionImm,
     IOOutInstruction,
     IORstInstruction,
     JumpEqInstruction,
@@ -102,12 +102,12 @@ def test_control_unit_arithmetic_instruction(control_unit: ControlUnit) -> None:
 
 
 def test_control_unit_io_memory_instruction(control_unit: ControlUnit) -> None:
-    instr_ld = IOMemoryInstruction(Opcode.LD, Registers.R1, 5)
+    instr_ld = IOMemoryInstructionImm(Opcode.LD, Registers.R1, 5)
     control_unit.data_path.data_memory[5] = 10
     control_unit.decode_and_execute_instruction(instr_ld)
     assert control_unit.data_path.r1 == 10
 
-    instr_st = IOMemoryInstruction(Opcode.ST, Registers.R1, 5)
+    instr_st = IOMemoryInstructionImm(Opcode.ST, Registers.R1, 5)
     control_unit.decode_and_execute_instruction(instr_st)
     assert control_unit.data_path.data_memory[5] == 10
 

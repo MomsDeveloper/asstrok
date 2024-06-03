@@ -45,15 +45,27 @@ class DataPath:
         else:
             raise ValueError(f"Unknown signal {sel}")
 
-    def signal_read(self, sel: Literal[Signals.SP_INC, Signals.INPUT_ADDR], 
-                    addr: int = 0) -> None:
+    def signal_read(
+        self, 
+        sel: Literal[
+            Signals.SP_INC, 
+            Signals.ADDR_IMM, 
+            Signals.ADDR_R1, 
+            Signals.ADDR_R2
+        ],
+        addr: int = 0,
+    ) -> None:
         if sel == Signals.SP_INC:
             if self.stack_pointer == self.data_memory_size:
                 raise ValueError("Stack underflow")
             self.stack_pointer += 1
             self.data_out = self.data_memory[self.stack_pointer]
-        elif sel == Signals.INPUT_ADDR:
+        elif sel == Signals.ADDR_IMM:
             self.data_out = self.data_memory[addr]
+        elif sel == Signals.ADDR_R1:
+            self.data_out = self.data_memory[self.r1]
+        elif sel == Signals.ADDR_R2:
+            self.data_out = self.data_memory[self.r2]
     
     def signal_latch_alu_l(self, sel: Signals, value: int = 0) -> None:
         if sel == Signals.DATA_R1:
@@ -87,15 +99,27 @@ class DataPath:
         else:
             raise ValueError(f"Unknown opcode {opcode}")
     
-    def signal_write(self, sel: Literal[Signals.SP_DEC, Signals.INPUT_ADDR], 
-                     addr: int = 0) -> None:
+    def signal_write(
+        self, 
+        sel: Literal[
+            Signals.SP_DEC, 
+            Signals.ADDR_IMM, 
+            Signals.ADDR_R1, 
+            Signals.ADDR_R2
+        ],
+        addr: int = 0,
+    ) -> None:
         if sel == Signals.SP_DEC:
             if self.stack_pointer == 0:
                 raise ValueError("Stack overflow")
             self.data_memory[self.stack_pointer] = self.alu_out
             self.stack_pointer -= 1
-        elif sel == Signals.INPUT_ADDR:
+        elif sel == Signals.ADDR_IMM:
             self.data_memory[addr] = self.alu_out
+        elif sel == Signals.ADDR_R1:
+            self.data_memory[self.r1] = self.alu_out
+        elif sel == Signals.ADDR_R2:
+            self.data_memory[self.r2] = self.alu_out
         else:
             raise ValueError(f"Unknown signal {sel}")
 

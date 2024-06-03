@@ -6,7 +6,8 @@ from src.isa import (
     ArithmeticInstructionImm,
     ArithmeticInstructionReg,
     Instruction,
-    IOMemoryInstruction,
+    IOMemoryInstructionImm,
+    IOMemoryInstructionReg,
     IOOutInstruction,
     JumpEqInstruction,
     JumpInstruction,
@@ -58,12 +59,20 @@ test_instruction_packing_cases = [
         struct.pack(">H", 0b0000_0000_0000_0000),
     ),
     (
-        IOMemoryInstruction(Opcode.LD, Registers.R1, 0x1),
-        struct.pack(">H", 0b1100_0000_0000_0001),
+        IOMemoryInstructionReg(Opcode.LD, Registers.R1, Registers.R1),
+        struct.pack(">H", 0b1100_0000_0000_0000),
     ),
     (
-        IOMemoryInstruction(Opcode.ST, Registers.R2, 0x3FF),
-        struct.pack(">H", 0b1101_1011_1111_1111),
+        IOMemoryInstructionReg(Opcode.ST, Registers.R2, Registers.R2),
+        struct.pack(">H", 0b1101_0110_0000_0000),
+    ),
+    (
+        IOMemoryInstructionImm(Opcode.LD, Registers.R1, 0x1),
+        struct.pack(">H", 0b1100_1000_0000_0001),
+    ),
+    (
+        IOMemoryInstructionImm(Opcode.ST, Registers.R2, 0x3FF),
+        struct.pack(">H", 0b1101_1111_1111_1111),
     ),
     (
         IOOutInstruction(Opcode.OUT, Registers.R1),

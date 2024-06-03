@@ -13,7 +13,9 @@ class Signals(Enum):
 
     SP_INC = auto()
     SP_DEC = auto()
-    INPUT_ADDR = auto()
+    ADDR_IMM = auto()
+    ADDR_R1 = auto()
+    ADDR_R2 = auto()
 
     DATA_R1 = auto()
     DATA_R2 = auto()

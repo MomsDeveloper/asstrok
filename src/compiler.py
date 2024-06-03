@@ -7,7 +7,8 @@ from src.isa import (
     ArithmeticInstructionReg,
     CallInstruction,
     Instruction,
-    IOMemoryInstruction,
+    IOMemoryInstructionImm,
+    IOMemoryInstructionReg,
     IOOutInstruction,
     IORstInstruction,
     JumpEqInstruction,
@@ -70,7 +71,7 @@ def replace_labels_with_addresses(
         parts = line.split()
         if parts[0] in {"JMP", "JE", "CALL"} and parts[-1] in labels:
             parts[-1] = str(labels[parts[-1]])
-        elif parts[0] not in {"JMP", "JE"} and parts[-1] in labels:
+        elif parts[0] not in {"JMP", "JE", "CALL"} and parts[-1] in labels:
             raise ValueError(
                 f"Label {parts[-1]} is not allowed with {parts[0]}")
         replaced_lines.append(" ".join(parts))
@@ -111,10 +112,14 @@ def parse_instructions(lines: List[str], start: int) -> Program:
             addr = int(parts[2])
             program.append(JumpEqInstruction(opcode, src, addr))
         elif opcode in {Opcode.LD, Opcode.ST}:
-            src = Registers[parts[1]]
-            addr = int(parts[2])
-            program.append(IOMemoryInstruction(
-                opcode, src, addr))  # type: ignore
+            dest = Registers[parts[1]]
+            if parts[2] in {"R1", "R2"}:
+                r = Registers[parts[2]]
+                program.append(IOMemoryInstructionReg(opcode, dest, r))  # type: ignore
+            else:
+                addr = int(parts[2])
+                program.append(IOMemoryInstructionImm(opcode, dest, addr))  # type: ignore
+
         elif opcode == Opcode.OUT:
             src = Registers[parts[1]]
             program.append(IOOutInstruction(opcode, src))
@@ -133,7 +138,7 @@ def compile(source: str) -> Program:
     lines.insert(0, "CALL INT")
     clean_lines, labels, start = extract_labels(lines)
     if "INT" and "START" not in labels:
-        raise ValueError("IN and START labels are required")
+        raise ValueError("INT and START labels are required")
 
     replaced_lines = replace_labels_with_addresses(clean_lines, labels)
     return parse_instructions(replaced_lines, start)

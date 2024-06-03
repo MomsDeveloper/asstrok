@@ -5,7 +5,8 @@ from src.isa import (
     ArithmeticInstructionImm,
     ArithmeticInstructionReg,
     CallInstruction,
-    IOMemoryInstruction,
+    IOMemoryInstructionImm,
+    IOMemoryInstructionReg,
     IOOutInstruction,
     JumpEqInstruction,
     JumpInstruction,
@@ -44,7 +45,7 @@ test_compile_cases = [
             entry=3,
             instructions=[
                 CallInstruction(Opcode.CALL, 4),
-                IOMemoryInstruction(Opcode.LD, Registers.R2, 10),
+                IOMemoryInstructionImm(Opcode.LD, Registers.R2, 10),
                 ArithmeticInstructionImm(Opcode.ADD, Registers.R2, 4),
                 ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R2),
                 ArithmeticInstructionImm(Opcode.SUB, Registers.R2, 1),
@@ -71,10 +72,10 @@ test_compile_cases = [
             instructions=[
                 CallInstruction(Opcode.CALL, 1),
                 RetInstruction(Opcode.RET),
-                IOMemoryInstruction(Opcode.LD, Registers.R1, 10),
-                IOMemoryInstruction(Opcode.LD, Registers.R2, 20),
+                IOMemoryInstructionImm(Opcode.LD, Registers.R1, 10),
+                IOMemoryInstructionImm(Opcode.LD, Registers.R2, 20),
                 ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R2),
-                IOMemoryInstruction(Opcode.ST, Registers.R1, 30),
+                IOMemoryInstructionImm(Opcode.ST, Registers.R1, 30),
                 IOOutInstruction(Opcode.OUT, Registers.R1),
                 IOOutInstruction(Opcode.OUT, Registers.R2),
                 JumpEqInstruction(Opcode.JE, Registers.R1, 1),
@@ -103,16 +104,44 @@ test_compile_cases = [
             instructions=[
                 CallInstruction(Opcode.CALL, 1),
                 RetInstruction(Opcode.RET),
-                IOMemoryInstruction(Opcode.LD, Registers.R1, 10),
-                IOMemoryInstruction(Opcode.LD, Registers.R2, 20),
+                IOMemoryInstructionImm(Opcode.LD, Registers.R1, 10),
+                IOMemoryInstructionImm(Opcode.LD, Registers.R2, 20),
                 ArithmeticInstructionReg(Opcode.ADD, Registers.R1, Registers.R2),
-                IOMemoryInstruction(Opcode.ST, Registers.R1, 30),
+                IOMemoryInstructionImm(Opcode.ST, Registers.R1, 30),
                 IOOutInstruction(Opcode.OUT, Registers.R1),
                 IOOutInstruction(Opcode.OUT, Registers.R2),
                 JumpEqInstruction(Opcode.JE, Registers.R1, 2),
             ]
         )
     ),
+    (
+        """
+        INT: 
+        START:
+        LD R1, R1
+        LD R1, R2
+        LD R2, R1
+        LD R2, R2
+        ST R1, R1
+        ST R1, R2
+        ST R2, R1
+        ST R2, R2
+        """,
+        Program(
+            entry=1,
+            instructions=[
+                CallInstruction(Opcode.CALL, 1),
+                IOMemoryInstructionReg(Opcode.LD, Registers.R1, Registers.R1),
+                IOMemoryInstructionReg(Opcode.LD, Registers.R1, Registers.R2),
+                IOMemoryInstructionReg(Opcode.LD, Registers.R2, Registers.R1),
+                IOMemoryInstructionReg(Opcode.LD, Registers.R2, Registers.R2),
+                IOMemoryInstructionReg(Opcode.ST, Registers.R1, Registers.R1),
+                IOMemoryInstructionReg(Opcode.ST, Registers.R1, Registers.R2),
+                IOMemoryInstructionReg(Opcode.ST, Registers.R2, Registers.R1),
+                IOMemoryInstructionReg(Opcode.ST, Registers.R2, Registers.R2),
+            ],
+        )
+    )
 ]
 
 

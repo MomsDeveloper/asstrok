@@ -33,7 +33,7 @@ def test_signal_latch_r2(data_path: DataPath) -> None:
 
 def test_signal_read(data_path: DataPath) -> None:
     data_path.data_memory[100] = 35
-    data_path.signal_read(Signals.INPUT_ADDR, 100)
+    data_path.signal_read(Signals.ADDR_IMM, 100)
     assert data_path.data_out == 35
 
     data_path.stack_pointer = 10
