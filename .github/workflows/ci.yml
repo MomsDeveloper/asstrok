@@ -23,7 +23,6 @@ jobs:
 
       - name: Run tests
         run: |
-          cd lab3
           pytest
 
   lint:
