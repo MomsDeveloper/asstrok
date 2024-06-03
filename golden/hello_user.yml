@@ -80,7 +80,7 @@ in_stdin: |-
   [(0, 'A'), (10, 'l'), (20, 'i'), (30, 'c'), (40, 'e'), (50, '\0')]
 out_log: |
   INFO     root:machine.py:38 Starting simulation
-  INFO     root:machine.py:39 Current State: 
+  INFO     root:machine.py:39 Current State: with input:
   TICK: 0	PC: 39
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
@@ -90,7 +90,7 @@ out_log: |
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:40 
   INFO     root:machine.py:54 Current State:
-  Interrupted with input: A
+  Interrupted with input:A
   TICK: 1	PC: 40
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
@@ -98,7 +98,7 @@ out_log: |
   MEMORY: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 7	PC: 1
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 0	R2: 65	SP: 251
@@ -107,7 +107,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 8	PC: 2
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 0	R2: 65	SP: 251
@@ -116,7 +116,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 9	PC: 3
   ALU_L: 0	ALU_R:1	ALU_OUT: 1
   R1: 1	R2: 65	SP: 251
@@ -125,7 +125,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 10	PC: 4
   ALU_L: 1	ALU_R:0	ALU_OUT: 1
   R1: 1	R2: 65	SP: 251
@@ -135,7 +135,7 @@ out_log: |
   IOMemoryInstructionReg(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
   INFO     root:machine.py:54 Current State:
-  Interrupted with input: l
+  Interrupted with input:l
   TICK: 11	PC: 5
   ALU_L: 65	ALU_R:0	ALU_OUT: 65
   R1: 1	R2: 65	SP: 251
@@ -143,7 +143,7 @@ out_log: |
   MEMORY: [1, 65, 0, 0, 0, 0, 0, 0, 0, 0]
 
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 17	PC: 1
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 1	R2: 108	SP: 247
@@ -152,7 +152,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 18	PC: 2
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 1	R2: 108	SP: 247
@@ -161,7 +161,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 19	PC: 3
   ALU_L: 1	ALU_R:1	ALU_OUT: 2
   R1: 2	R2: 108	SP: 247
@@ -170,7 +170,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 20	PC: 4
   ALU_L: 2	ALU_R:0	ALU_OUT: 2
   R1: 2	R2: 108	SP: 247
@@ -180,7 +180,7 @@ out_log: |
   IOMemoryInstructionReg(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
   INFO     root:machine.py:54 Current State:
-  Interrupted with input: i
+  Interrupted with input:i
   TICK: 21	PC: 5
   ALU_L: 108	ALU_R:0	ALU_OUT: 108
   R1: 2	R2: 108	SP: 247
@@ -188,7 +188,7 @@ out_log: |
   MEMORY: [2, 65, 108, 0, 0, 0, 0, 0, 0, 0]
 
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 27	PC: 1
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 2	R2: 105	SP: 243
@@ -197,7 +197,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 28	PC: 2
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 2	R2: 105	SP: 243
@@ -206,7 +206,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 29	PC: 3
   ALU_L: 2	ALU_R:1	ALU_OUT: 3
   R1: 3	R2: 105	SP: 243
@@ -215,7 +215,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 30	PC: 4
   ALU_L: 3	ALU_R:0	ALU_OUT: 3
   R1: 3	R2: 105	SP: 243
@@ -225,7 +225,7 @@ out_log: |
   IOMemoryInstructionReg(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
   INFO     root:machine.py:54 Current State:
-  Interrupted with input: c
+  Interrupted with input:c
   TICK: 31	PC: 5
   ALU_L: 105	ALU_R:0	ALU_OUT: 105
   R1: 3	R2: 105	SP: 243
@@ -233,7 +233,7 @@ out_log: |
   MEMORY: [3, 65, 108, 105, 0, 0, 0, 0, 0, 0]
 
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 37	PC: 1
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 3	R2: 99	SP: 239
@@ -242,7 +242,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 38	PC: 2
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 3	R2: 99	SP: 239
@@ -251,7 +251,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 39	PC: 3
   ALU_L: 3	ALU_R:1	ALU_OUT: 4
   R1: 4	R2: 99	SP: 239
@@ -260,7 +260,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 40	PC: 4
   ALU_L: 4	ALU_R:0	ALU_OUT: 4
   R1: 4	R2: 99	SP: 239
@@ -270,7 +270,7 @@ out_log: |
   IOMemoryInstructionReg(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
   INFO     root:machine.py:54 Current State:
-  Interrupted with input: e
+  Interrupted with input:e
   TICK: 41	PC: 5
   ALU_L: 99	ALU_R:0	ALU_OUT: 99
   R1: 4	R2: 99	SP: 239
@@ -278,7 +278,7 @@ out_log: |
   MEMORY: [4, 65, 108, 105, 99, 0, 0, 0, 0, 0]
 
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 47	PC: 1
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 4	R2: 101	SP: 235
@@ -287,7 +287,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 48	PC: 2
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 4	R2: 101	SP: 235
@@ -296,7 +296,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 49	PC: 3
   ALU_L: 4	ALU_R:1	ALU_OUT: 5
   R1: 5	R2: 101	SP: 235
@@ -305,7 +305,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 50	PC: 4
   ALU_L: 5	ALU_R:0	ALU_OUT: 5
   R1: 5	R2: 101	SP: 235
@@ -315,7 +315,7 @@ out_log: |
   IOMemoryInstructionReg(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
   INFO     root:machine.py:54 Current State:
-  Interrupted 
+  Interrupted with input:
   TICK: 51	PC: 5
   ALU_L: 101	ALU_R:0	ALU_OUT: 101
   R1: 5	R2: 101	SP: 235
@@ -323,7 +323,7 @@ out_log: |
   MEMORY: [5, 65, 108, 105, 99, 101, 0, 0, 0, 0]
 
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 57	PC: 1
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 5	R2: 0	SP: 231
@@ -332,7 +332,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 58	PC: 2
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 5	R2: 0	SP: 231
@@ -341,7 +341,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 59	PC: 3
   ALU_L: 5	ALU_R:1	ALU_OUT: 6
   R1: 6	R2: 0	SP: 231
@@ -350,7 +350,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 60	PC: 4
   ALU_L: 6	ALU_R:0	ALU_OUT: 6
   R1: 6	R2: 0	SP: 231
@@ -359,7 +359,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionReg(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 61	PC: 5
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 6	R2: 0	SP: 231
@@ -368,7 +368,7 @@ out_log: |
   Instruction to execute:
   JumpEqInstruction(opcode=<Opcode.JE: 9>, src=<Registers.R2: 1>, addr=7)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 62	PC: 7
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 6	R2: 0	SP: 231
@@ -377,7 +377,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 63	PC: 8
   ALU_L: 6	ALU_R:6	ALU_OUT: 0
   R1: 0	R2: 0	SP: 231
@@ -386,7 +386,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=104, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 64	PC: 9
   ALU_L: 0	ALU_R:104	ALU_OUT: 104
   R1: 104	R2: 0	SP: 231
@@ -395,7 +395,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 65	PC: 10
   ALU_L: 104	ALU_R:0	ALU_OUT: 104
   R1: 104	R2: 0	SP: 231
@@ -404,7 +404,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 66	PC: 11
   ALU_L: 104	ALU_R:104	ALU_OUT: 0
   R1: 0	R2: 0	SP: 231
@@ -413,7 +413,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=101, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 67	PC: 12
   ALU_L: 0	ALU_R:101	ALU_OUT: 101
   R1: 101	R2: 0	SP: 231
@@ -422,7 +422,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 68	PC: 13
   ALU_L: 101	ALU_R:0	ALU_OUT: 101
   R1: 101	R2: 0	SP: 231
@@ -431,7 +431,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 69	PC: 14
   ALU_L: 101	ALU_R:101	ALU_OUT: 0
   R1: 0	R2: 0	SP: 231
@@ -440,7 +440,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=108, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 70	PC: 15
   ALU_L: 0	ALU_R:108	ALU_OUT: 108
   R1: 108	R2: 0	SP: 231
@@ -449,7 +449,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 71	PC: 16
   ALU_L: 108	ALU_R:0	ALU_OUT: 108
   R1: 108	R2: 0	SP: 231
@@ -458,7 +458,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 72	PC: 17
   ALU_L: 108	ALU_R:108	ALU_OUT: 0
   R1: 0	R2: 0	SP: 231
@@ -467,7 +467,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=108, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 73	PC: 18
   ALU_L: 0	ALU_R:108	ALU_OUT: 108
   R1: 108	R2: 0	SP: 231
@@ -476,7 +476,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 74	PC: 19
   ALU_L: 108	ALU_R:0	ALU_OUT: 108
   R1: 108	R2: 0	SP: 231
@@ -485,7 +485,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 75	PC: 20
   ALU_L: 108	ALU_R:108	ALU_OUT: 0
   R1: 0	R2: 0	SP: 231
@@ -494,7 +494,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=111, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 76	PC: 21
   ALU_L: 0	ALU_R:111	ALU_OUT: 111
   R1: 111	R2: 0	SP: 231
@@ -503,7 +503,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 77	PC: 22
   ALU_L: 111	ALU_R:0	ALU_OUT: 111
   R1: 111	R2: 0	SP: 231
@@ -512,7 +512,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 78	PC: 23
   ALU_L: 111	ALU_R:111	ALU_OUT: 0
   R1: 0	R2: 0	SP: 231
@@ -521,7 +521,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=44, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 79	PC: 24
   ALU_L: 0	ALU_R:44	ALU_OUT: 44
   R1: 44	R2: 0	SP: 231
@@ -530,7 +530,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 80	PC: 25
   ALU_L: 44	ALU_R:0	ALU_OUT: 44
   R1: 44	R2: 0	SP: 231
@@ -539,7 +539,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 81	PC: 26
   ALU_L: 44	ALU_R:44	ALU_OUT: 0
   R1: 0	R2: 0	SP: 231
@@ -548,7 +548,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=32, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 82	PC: 27
   ALU_L: 0	ALU_R:32	ALU_OUT: 32
   R1: 32	R2: 0	SP: 231
@@ -557,7 +557,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 83	PC: 28
   ALU_L: 32	ALU_R:0	ALU_OUT: 32
   R1: 32	R2: 0	SP: 231
@@ -566,7 +566,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 84	PC: 29
   ALU_L: 32	ALU_R:32	ALU_OUT: 0
   R1: 0	R2: 0	SP: 231
@@ -575,7 +575,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 85	PC: 30
   ALU_L: 0	ALU_R:1	ALU_OUT: 1
   R1: 1	R2: 0	SP: 231
@@ -584,7 +584,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionReg(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 86	PC: 31
   ALU_L: 0	ALU_R:1	ALU_OUT: 1
   R1: 1	R2: 65	SP: 231
@@ -593,7 +593,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 87	PC: 32
   ALU_L: 65	ALU_R:0	ALU_OUT: 65
   R1: 1	R2: 65	SP: 231
@@ -602,7 +602,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 88	PC: 33
   ALU_L: 65	ALU_R:0	ALU_OUT: 65
   R1: 1	R2: 6	SP: 231
@@ -611,7 +611,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.SUB: 5>, dest=<Registers.R2: 1>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 89	PC: 34
   ALU_L: 6	ALU_R:1	ALU_OUT: 5
   R1: 1	R2: 5	SP: 231
@@ -620,7 +620,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 90	PC: 35
   ALU_L: 1	ALU_R:1	ALU_OUT: 2
   R1: 2	R2: 5	SP: 231
@@ -629,7 +629,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 91	PC: 36
   ALU_L: 5	ALU_R:0	ALU_OUT: 5
   R1: 2	R2: 5	SP: 231
@@ -638,7 +638,7 @@ out_log: |
   Instruction to execute:
   JumpEqInstruction(opcode=<Opcode.JE: 9>, src=<Registers.R2: 1>, addr=38)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 92	PC: 37
   ALU_L: 5	ALU_R:0	ALU_OUT: 5
   R1: 2	R2: 5	SP: 231
@@ -647,7 +647,7 @@ out_log: |
   Instruction to execute:
   JumpInstruction(opcode=<Opcode.JMP: 8>, addr=30)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 93	PC: 30
   ALU_L: 5	ALU_R:0	ALU_OUT: 5
   R1: 2	R2: 5	SP: 231
@@ -656,7 +656,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionReg(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 94	PC: 31
   ALU_L: 5	ALU_R:0	ALU_OUT: 5
   R1: 2	R2: 108	SP: 231
@@ -665,7 +665,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 95	PC: 32
   ALU_L: 108	ALU_R:0	ALU_OUT: 108
   R1: 2	R2: 108	SP: 231
@@ -674,7 +674,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 96	PC: 33
   ALU_L: 108	ALU_R:0	ALU_OUT: 108
   R1: 2	R2: 5	SP: 231
@@ -683,7 +683,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.SUB: 5>, dest=<Registers.R2: 1>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 97	PC: 34
   ALU_L: 5	ALU_R:1	ALU_OUT: 4
   R1: 2	R2: 4	SP: 231
@@ -692,7 +692,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 98	PC: 35
   ALU_L: 2	ALU_R:1	ALU_OUT: 3
   R1: 3	R2: 4	SP: 231
@@ -701,7 +701,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 99	PC: 36
   ALU_L: 4	ALU_R:0	ALU_OUT: 4
   R1: 3	R2: 4	SP: 231
@@ -710,7 +710,7 @@ out_log: |
   Instruction to execute:
   JumpEqInstruction(opcode=<Opcode.JE: 9>, src=<Registers.R2: 1>, addr=38)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 100	PC: 37
   ALU_L: 4	ALU_R:0	ALU_OUT: 4
   R1: 3	R2: 4	SP: 231
@@ -719,7 +719,7 @@ out_log: |
   Instruction to execute:
   JumpInstruction(opcode=<Opcode.JMP: 8>, addr=30)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 101	PC: 30
   ALU_L: 4	ALU_R:0	ALU_OUT: 4
   R1: 3	R2: 4	SP: 231
@@ -728,7 +728,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionReg(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 102	PC: 31
   ALU_L: 4	ALU_R:0	ALU_OUT: 4
   R1: 3	R2: 105	SP: 231
@@ -737,7 +737,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 103	PC: 32
   ALU_L: 105	ALU_R:0	ALU_OUT: 105
   R1: 3	R2: 105	SP: 231
@@ -746,7 +746,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 104	PC: 33
   ALU_L: 105	ALU_R:0	ALU_OUT: 105
   R1: 3	R2: 4	SP: 231
@@ -755,7 +755,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.SUB: 5>, dest=<Registers.R2: 1>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 105	PC: 34
   ALU_L: 4	ALU_R:1	ALU_OUT: 3
   R1: 3	R2: 3	SP: 231
@@ -764,7 +764,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 106	PC: 35
   ALU_L: 3	ALU_R:1	ALU_OUT: 4
   R1: 4	R2: 3	SP: 231
@@ -773,7 +773,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 107	PC: 36
   ALU_L: 3	ALU_R:0	ALU_OUT: 3
   R1: 4	R2: 3	SP: 231
@@ -782,7 +782,7 @@ out_log: |
   Instruction to execute:
   JumpEqInstruction(opcode=<Opcode.JE: 9>, src=<Registers.R2: 1>, addr=38)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 108	PC: 37
   ALU_L: 3	ALU_R:0	ALU_OUT: 3
   R1: 4	R2: 3	SP: 231
@@ -791,7 +791,7 @@ out_log: |
   Instruction to execute:
   JumpInstruction(opcode=<Opcode.JMP: 8>, addr=30)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 109	PC: 30
   ALU_L: 3	ALU_R:0	ALU_OUT: 3
   R1: 4	R2: 3	SP: 231
@@ -800,7 +800,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionReg(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 110	PC: 31
   ALU_L: 3	ALU_R:0	ALU_OUT: 3
   R1: 4	R2: 99	SP: 231
@@ -809,7 +809,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 111	PC: 32
   ALU_L: 99	ALU_R:0	ALU_OUT: 99
   R1: 4	R2: 99	SP: 231
@@ -818,7 +818,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 112	PC: 33
   ALU_L: 99	ALU_R:0	ALU_OUT: 99
   R1: 4	R2: 3	SP: 231
@@ -827,7 +827,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.SUB: 5>, dest=<Registers.R2: 1>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 113	PC: 34
   ALU_L: 3	ALU_R:1	ALU_OUT: 2
   R1: 4	R2: 2	SP: 231
@@ -836,7 +836,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 114	PC: 35
   ALU_L: 4	ALU_R:1	ALU_OUT: 5
   R1: 5	R2: 2	SP: 231
@@ -845,7 +845,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 115	PC: 36
   ALU_L: 2	ALU_R:0	ALU_OUT: 2
   R1: 5	R2: 2	SP: 231
@@ -854,7 +854,7 @@ out_log: |
   Instruction to execute:
   JumpEqInstruction(opcode=<Opcode.JE: 9>, src=<Registers.R2: 1>, addr=38)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 116	PC: 37
   ALU_L: 2	ALU_R:0	ALU_OUT: 2
   R1: 5	R2: 2	SP: 231
@@ -863,7 +863,7 @@ out_log: |
   Instruction to execute:
   JumpInstruction(opcode=<Opcode.JMP: 8>, addr=30)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 117	PC: 30
   ALU_L: 2	ALU_R:0	ALU_OUT: 2
   R1: 5	R2: 2	SP: 231
@@ -872,7 +872,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionReg(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 118	PC: 31
   ALU_L: 2	ALU_R:0	ALU_OUT: 2
   R1: 5	R2: 101	SP: 231
@@ -881,7 +881,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 119	PC: 32
   ALU_L: 101	ALU_R:0	ALU_OUT: 101
   R1: 5	R2: 101	SP: 231
@@ -890,7 +890,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 120	PC: 33
   ALU_L: 101	ALU_R:0	ALU_OUT: 101
   R1: 5	R2: 2	SP: 231
@@ -899,7 +899,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.SUB: 5>, dest=<Registers.R2: 1>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 121	PC: 34
   ALU_L: 2	ALU_R:1	ALU_OUT: 1
   R1: 5	R2: 1	SP: 231
@@ -908,7 +908,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 122	PC: 35
   ALU_L: 5	ALU_R:1	ALU_OUT: 6
   R1: 6	R2: 1	SP: 231
@@ -917,7 +917,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 123	PC: 36
   ALU_L: 1	ALU_R:0	ALU_OUT: 1
   R1: 6	R2: 1	SP: 231
@@ -926,7 +926,7 @@ out_log: |
   Instruction to execute:
   JumpEqInstruction(opcode=<Opcode.JE: 9>, src=<Registers.R2: 1>, addr=38)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 124	PC: 37
   ALU_L: 1	ALU_R:0	ALU_OUT: 1
   R1: 6	R2: 1	SP: 231
@@ -935,7 +935,7 @@ out_log: |
   Instruction to execute:
   JumpInstruction(opcode=<Opcode.JMP: 8>, addr=30)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 125	PC: 30
   ALU_L: 1	ALU_R:0	ALU_OUT: 1
   R1: 6	R2: 1	SP: 231
@@ -944,7 +944,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionReg(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 126	PC: 31
   ALU_L: 1	ALU_R:0	ALU_OUT: 1
   R1: 6	R2: 0	SP: 231
@@ -953,7 +953,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R2: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 127	PC: 32
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 6	R2: 0	SP: 231
@@ -962,7 +962,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.LD: 12>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 128	PC: 33
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 6	R2: 1	SP: 231
@@ -971,7 +971,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.SUB: 5>, dest=<Registers.R2: 1>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 129	PC: 34
   ALU_L: 1	ALU_R:1	ALU_OUT: 0
   R1: 6	R2: 0	SP: 231
@@ -980,7 +980,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=1, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 130	PC: 35
   ALU_L: 6	ALU_R:1	ALU_OUT: 7
   R1: 7	R2: 0	SP: 231
@@ -989,7 +989,7 @@ out_log: |
   Instruction to execute:
   IOMemoryInstructionImm(opcode=<Opcode.ST: 13>, dest=<Registers.R2: 1>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 131	PC: 36
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 7	R2: 0	SP: 231
@@ -998,7 +998,7 @@ out_log: |
   Instruction to execute:
   JumpEqInstruction(opcode=<Opcode.JE: 9>, src=<Registers.R2: 1>, addr=38)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
+  INFO     root:machine.py:54 Current State: with input:
   TICK: 132	PC: 38
   ALU_L: 0	ALU_R:0	ALU_OUT: 0
   R1: 7	R2: 0	SP: 231

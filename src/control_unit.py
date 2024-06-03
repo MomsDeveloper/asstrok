@@ -225,8 +225,8 @@ class ControlUnit:
         return (
             f"Current State:"
             f"{'\nInterrupted' if self.controller.interruption_flag else ''}"
-            f" {'with input: ' +
-                chr(self.controller.input_buffer[0][1]) if self.controller.interruption_flag and len(self.controller.input_buffer) > 1 else ''}\n"  # noqa: E501
+            f" with input:" 
+            f"{chr(self.controller.input_buffer[0][1]) if self.controller.interruption_flag and len(self.controller.input_buffer) > 1 else ''}\n"  # noqa: E501
             f"{cu_repr}\n"
             f"{alu_repr}\n"
             f"{datapath_repr}\n"
