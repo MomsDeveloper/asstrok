@@ -72,8 +72,7 @@ in_stdin: |-
   []
 out_log: |
   INFO     root:machine.py:38 Starting simulation
-  INFO     root:machine.py:39 Current State: 
-  TICK: 0	PC: 2
+  INFO     root:machine.py:39 Current State:TICK: 0	PC: 2
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -81,8 +80,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:40 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 1	PC: 3
+  INFO     root:machine.py:54 Current State:TICK: 1	PC: 3
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -90,8 +88,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=104, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 2	PC: 4
+  INFO     root:machine.py:54 Current State:TICK: 2	PC: 4
   ALU_L: 0	ALU_R: 104	ALU_OUT: 104
   R1: 104	R2: 0	SP: 255
   STACK: []
@@ -99,8 +96,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 3	PC: 5
+  INFO     root:machine.py:54 Current State:TICK: 3	PC: 5
   ALU_L: 104	ALU_R: 0	ALU_OUT: 104
   R1: 104	R2: 0	SP: 255
   STACK: []
@@ -108,8 +104,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 4	PC: 6
+  INFO     root:machine.py:54 Current State:TICK: 4	PC: 6
   ALU_L: 104	ALU_R: 104	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -117,8 +112,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=101, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 5	PC: 7
+  INFO     root:machine.py:54 Current State:TICK: 5	PC: 7
   ALU_L: 0	ALU_R: 101	ALU_OUT: 101
   R1: 101	R2: 0	SP: 255
   STACK: []
@@ -126,8 +120,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 6	PC: 8
+  INFO     root:machine.py:54 Current State:TICK: 6	PC: 8
   ALU_L: 101	ALU_R: 0	ALU_OUT: 101
   R1: 101	R2: 0	SP: 255
   STACK: []
@@ -135,8 +128,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 7	PC: 9
+  INFO     root:machine.py:54 Current State:TICK: 7	PC: 9
   ALU_L: 101	ALU_R: 101	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -144,8 +136,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=108, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 8	PC: 10
+  INFO     root:machine.py:54 Current State:TICK: 8	PC: 10
   ALU_L: 0	ALU_R: 108	ALU_OUT: 108
   R1: 108	R2: 0	SP: 255
   STACK: []
@@ -153,8 +144,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 9	PC: 11
+  INFO     root:machine.py:54 Current State:TICK: 9	PC: 11
   ALU_L: 108	ALU_R: 0	ALU_OUT: 108
   R1: 108	R2: 0	SP: 255
   STACK: []
@@ -162,8 +152,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 10	PC: 12
+  INFO     root:machine.py:54 Current State:TICK: 10	PC: 12
   ALU_L: 108	ALU_R: 108	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -171,8 +160,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=108, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 11	PC: 13
+  INFO     root:machine.py:54 Current State:TICK: 11	PC: 13
   ALU_L: 0	ALU_R: 108	ALU_OUT: 108
   R1: 108	R2: 0	SP: 255
   STACK: []
@@ -180,8 +168,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 12	PC: 14
+  INFO     root:machine.py:54 Current State:TICK: 12	PC: 14
   ALU_L: 108	ALU_R: 0	ALU_OUT: 108
   R1: 108	R2: 0	SP: 255
   STACK: []
@@ -189,8 +176,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 13	PC: 15
+  INFO     root:machine.py:54 Current State:TICK: 13	PC: 15
   ALU_L: 108	ALU_R: 108	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -198,8 +184,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=111, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 14	PC: 16
+  INFO     root:machine.py:54 Current State:TICK: 14	PC: 16
   ALU_L: 0	ALU_R: 111	ALU_OUT: 111
   R1: 111	R2: 0	SP: 255
   STACK: []
@@ -207,8 +192,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 15	PC: 17
+  INFO     root:machine.py:54 Current State:TICK: 15	PC: 17
   ALU_L: 111	ALU_R: 0	ALU_OUT: 111
   R1: 111	R2: 0	SP: 255
   STACK: []
@@ -216,8 +200,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 16	PC: 18
+  INFO     root:machine.py:54 Current State:TICK: 16	PC: 18
   ALU_L: 111	ALU_R: 111	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -225,8 +208,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=32, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 17	PC: 19
+  INFO     root:machine.py:54 Current State:TICK: 17	PC: 19
   ALU_L: 0	ALU_R: 32	ALU_OUT: 32
   R1: 32	R2: 0	SP: 255
   STACK: []
@@ -234,8 +216,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 18	PC: 20
+  INFO     root:machine.py:54 Current State:TICK: 18	PC: 20
   ALU_L: 32	ALU_R: 0	ALU_OUT: 32
   R1: 32	R2: 0	SP: 255
   STACK: []
@@ -243,8 +224,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 19	PC: 21
+  INFO     root:machine.py:54 Current State:TICK: 19	PC: 21
   ALU_L: 32	ALU_R: 32	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -252,8 +232,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=119, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 20	PC: 22
+  INFO     root:machine.py:54 Current State:TICK: 20	PC: 22
   ALU_L: 0	ALU_R: 119	ALU_OUT: 119
   R1: 119	R2: 0	SP: 255
   STACK: []
@@ -261,8 +240,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 21	PC: 23
+  INFO     root:machine.py:54 Current State:TICK: 21	PC: 23
   ALU_L: 119	ALU_R: 0	ALU_OUT: 119
   R1: 119	R2: 0	SP: 255
   STACK: []
@@ -270,8 +248,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 22	PC: 24
+  INFO     root:machine.py:54 Current State:TICK: 22	PC: 24
   ALU_L: 119	ALU_R: 119	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -279,8 +256,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=111, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 23	PC: 25
+  INFO     root:machine.py:54 Current State:TICK: 23	PC: 25
   ALU_L: 0	ALU_R: 111	ALU_OUT: 111
   R1: 111	R2: 0	SP: 255
   STACK: []
@@ -288,8 +264,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 24	PC: 26
+  INFO     root:machine.py:54 Current State:TICK: 24	PC: 26
   ALU_L: 111	ALU_R: 0	ALU_OUT: 111
   R1: 111	R2: 0	SP: 255
   STACK: []
@@ -297,8 +272,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 25	PC: 27
+  INFO     root:machine.py:54 Current State:TICK: 25	PC: 27
   ALU_L: 111	ALU_R: 111	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -306,8 +280,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=114, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 26	PC: 28
+  INFO     root:machine.py:54 Current State:TICK: 26	PC: 28
   ALU_L: 0	ALU_R: 114	ALU_OUT: 114
   R1: 114	R2: 0	SP: 255
   STACK: []
@@ -315,8 +288,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 27	PC: 29
+  INFO     root:machine.py:54 Current State:TICK: 27	PC: 29
   ALU_L: 114	ALU_R: 0	ALU_OUT: 114
   R1: 114	R2: 0	SP: 255
   STACK: []
@@ -324,8 +296,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 28	PC: 30
+  INFO     root:machine.py:54 Current State:TICK: 28	PC: 30
   ALU_L: 114	ALU_R: 114	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -333,8 +304,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=108, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 29	PC: 31
+  INFO     root:machine.py:54 Current State:TICK: 29	PC: 31
   ALU_L: 0	ALU_R: 108	ALU_OUT: 108
   R1: 108	R2: 0	SP: 255
   STACK: []
@@ -342,8 +312,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 30	PC: 32
+  INFO     root:machine.py:54 Current State:TICK: 30	PC: 32
   ALU_L: 108	ALU_R: 0	ALU_OUT: 108
   R1: 108	R2: 0	SP: 255
   STACK: []
@@ -351,8 +320,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 31	PC: 33
+  INFO     root:machine.py:54 Current State:TICK: 31	PC: 33
   ALU_L: 108	ALU_R: 108	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -360,8 +328,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=100, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 32	PC: 34
+  INFO     root:machine.py:54 Current State:TICK: 32	PC: 34
   ALU_L: 0	ALU_R: 100	ALU_OUT: 100
   R1: 100	R2: 0	SP: 255
   STACK: []
@@ -369,8 +336,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 33	PC: 35
+  INFO     root:machine.py:54 Current State:TICK: 33	PC: 35
   ALU_L: 100	ALU_R: 0	ALU_OUT: 100
   R1: 100	R2: 0	SP: 255
   STACK: []
@@ -378,8 +344,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 34	PC: 36
+  INFO     root:machine.py:54 Current State:TICK: 34	PC: 36
   ALU_L: 100	ALU_R: 100	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -387,8 +352,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=33, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 35	PC: 37
+  INFO     root:machine.py:54 Current State:TICK: 35	PC: 37
   ALU_L: 0	ALU_R: 33	ALU_OUT: 33
   R1: 33	R2: 0	SP: 255
   STACK: []
@@ -396,8 +360,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 36	PC: 38
+  INFO     root:machine.py:54 Current State:TICK: 36	PC: 38
   ALU_L: 33	ALU_R: 0	ALU_OUT: 33
   R1: 33	R2: 0	SP: 255
   STACK: []
@@ -405,8 +368,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionReg(opcode=<Opcode.SUB: 5>, dest=<Registers.R1: 0>, src=<Registers.R1: 0>, arg_type=<ArgType.REG: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 37	PC: 39
+  INFO     root:machine.py:54 Current State:TICK: 37	PC: 39
   ALU_L: 33	ALU_R: 33	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -414,8 +376,7 @@ out_log: |
   Instruction to execute:
   ArithmeticInstructionImm(opcode=<Opcode.ADD: 4>, dest=<Registers.R1: 0>, src=0, arg_type=<ArgType.IMM: 1>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 38	PC: 40
+  INFO     root:machine.py:54 Current State:TICK: 38	PC: 40
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []
@@ -423,8 +384,7 @@ out_log: |
   Instruction to execute:
   IOOutInstruction(opcode=<Opcode.OUT: 14>, src=<Registers.R1: 0>)
   INFO     root:machine.py:55 
-  INFO     root:machine.py:54 Current State: 
-  TICK: 39	PC: 41
+  INFO     root:machine.py:54 Current State:TICK: 39	PC: 41
   ALU_L: 0	ALU_R: 0	ALU_OUT: 0
   R1: 0	R2: 0	SP: 255
   STACK: []

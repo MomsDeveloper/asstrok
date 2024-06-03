@@ -220,14 +220,24 @@ class ControlUnit:
         mem_repr = f"MEMORY: {self.data_path.data_memory[:10]}"
         stack_repr = f"STACK: {self.data_path.data_memory[self.data_path.stack_pointer + 1:]}"  # noqa: E501
         alu_repr = f"ALU_L: {self.data_path.alu_l}\tALU_R: {self.data_path.alu_r}\tALU_OUT: {self.data_path.alu_out}"  # noqa: E501
-        return (
-            f"Current State:"
-            f"{'\nInterrupted' if self.controller.interruption_flag else ''}"
-            f" {'with input: ' + chr(self.controller.input_buffer[0][1]) if self.controller.interruption_flag and len(self.controller.input_buffer) > 1 else ''}\n"  # noqa: E501
-            f"{cu_repr}\n"
-            f"{alu_repr}\n"
-            f"{datapath_repr}\n"
-            f"{stack_repr}\n"
-            f"{mem_repr}\n"
-            f"{'Instruction to execute:\n' + str(instr_repr) if not self.controller.interruption_flag else ''}"  # noqa: E501
-        )
+        # interrupt_repr = f"INTERRUPT: {self.controller.interruption_flag}"
+        if self.controller.interruption_flag:
+            return (
+                f"Current State:"
+                f"Interrupted {'with input: ' + chr(self.controller.input_buffer[0][1]) if len(self.controller.input_buffer) > 1 else ''}\n"  # noqa: E501
+                f"{cu_repr}\n"
+                f"{alu_repr}\n"
+                f"{datapath_repr}\n"
+                f"{stack_repr}\n"
+                f"{mem_repr}\n"
+            )
+        else: 
+            return (
+                f"Current State:"
+                f"{cu_repr}\n"
+                f"{alu_repr}\n"
+                f"{datapath_repr}\n"
+                f"{stack_repr}\n"
+                f"{mem_repr}\n"
+                f"{'Instruction to execute:\n' + str(instr_repr)}"  # noqa: E501
+            )
