@@ -219,8 +219,7 @@ class ControlUnit:
         instr_repr = self.program.instructions[self.program_counter]
         mem_repr = f"MEMORY: {self.data_path.data_memory[:10]}"
         stack_repr = f"STACK: {self.data_path.data_memory[self.data_path.stack_pointer + 1:]}"  # noqa: E501
-        alu_repr = f"ALU_L: {self.data_path.alu_l}\tALU_R: {
-            self.data_path.alu_r}\tALU_OUT: {self.data_path.alu_out}"
+        alu_repr = f"ALU_L: {self.data_path.alu_l}\tALU_R: {self.data_path.alu_r}\tALU_OUT: {self.data_path.alu_out}"  # noqa: E501
         return (
             f"Current State:"
             f"{'\nInterrupted' if self.controller.interruption_flag else ''}"
