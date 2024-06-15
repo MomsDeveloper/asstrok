@@ -81,10 +81,7 @@ def main(code_file: Path, input_file: Path) -> None:
             chr(c)
             for c in machine.io_controller.output_buffer
         ])
-        # logging.info([
-        #     c
-        #     for c in machine.io_controller.output_buffer
-        # ])
+
         
 
 if __name__ == "__main__":
