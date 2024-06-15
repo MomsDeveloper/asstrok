@@ -83,7 +83,6 @@ def main(code_file: Path, input_file: Path) -> None:
         ])
 
         
-
 if __name__ == "__main__":
     assert len(sys.argv) == 3, "Usage: python machine.py <compiled.bin> <input.txt>"
     logging.basicConfig(level=logging.INFO)
