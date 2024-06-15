@@ -275,7 +275,6 @@ def pack_program(program: Program) -> bytes:
     # entry should be two bytes
     entry = struct.pack(">H", program.entry)
     instr = program.instructions
-    # return b''.join(instr.pack() for instr in program)
     return entry + b''.join(instr.pack() for instr in instr)
 
 
